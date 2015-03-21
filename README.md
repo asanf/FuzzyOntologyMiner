@@ -7,5 +7,7 @@ This software make use of OWL API (see http://owlcs.github.io/owlapi/) and the s
 
 ## Authors
 Giovanni Giuseppe Costa[http://github.com/ggc87]
+
 Demia Massaro
+
 Antonio Sanfelice[http://github.com/asanf]
