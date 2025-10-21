@@ -1,7 +1,6 @@
 package FOM;
 
 import java.io.File;
-import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
@@ -13,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -32,9 +30,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
-import FOM.StopWords;
 import edu.stanford.nlp.process.Morphology;
-import edu.stanford.nlp.ling.WordTag;
 
 import CFM.CorrelationFunction;
 
@@ -331,7 +327,7 @@ public class FuzzyOntologyMiner {
 	 * @throws OWLOntologyStorageException 
 	 * @throws FileNotFoundException 
 	 **/
-	public void saveOWL2FuzzyOntology(Taxonomy tax, String fileName) throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException{
+	public void saveOWL2FuzzyOntology(Taxonomy<String> tax, String fileName) throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException{
 		int i,j;
 		OWLClass s,c;
 		//iteratore dei concetti

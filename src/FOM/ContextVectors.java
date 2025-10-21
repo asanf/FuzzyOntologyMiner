@@ -1,6 +1,5 @@
 package FOM;
 import java.util.ArrayList;
-import CFM.CorrelationFunction;
 import java.util.Iterator;
 import Util.DTMatrix;
 

@@ -1,7 +1,6 @@
 package FOM;
 
 import java.util.Iterator;
-import java.lang.Math;
 import java.util.ArrayList;
 
 public class Taxonomy<E> implements Iterable<E>{

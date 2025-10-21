@@ -1,6 +1,5 @@
 package Util;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Classe che modella una matrice triangolare espandibile dinamicamente

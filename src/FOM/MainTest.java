@@ -1,6 +1,5 @@
 package FOM;
 import CFM.BMI;
-import CFM.PMI;
 import CFM.CorrelationFunction;
 import java.util.ArrayList;
 
