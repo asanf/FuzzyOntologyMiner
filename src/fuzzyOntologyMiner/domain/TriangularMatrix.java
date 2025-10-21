@@ -1,188 +1,214 @@
 package fuzzyOntologyMiner.domain;
+
+import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Classe che modella una matrice triangolare espandibile dinamicamente
+ * Models a Triangular matrix with dynamic expansion.
  * 
+ * The matrix stores values associated to a list of objects, and allows to store
+ * values associated to a single object (i.e. on the main diagonal of the
+ * matrix) or to couples of objects.
+ * 
+ * @param <T> type of the objects to associated to rows and columns of the
+ *            matrix.
  */
-public class TriangularMatrix<E> {
-	
-	
-	
+public class TriangularMatrix<T> {
+
 	/**
-	 * Costruttore base
+	 * Constructor.
+	 * 
+	 * Allocates a dynamic triangular matrix using a default size.
 	 */
-	public TriangularMatrix(){
+	public TriangularMatrix() {
 		this(minSize);
 	}
-	
-	
+
 	/**
-	 * Costruttore con parametro
-	 * @param size grandezza della matrice, che sarà size * (size + 1)/2
+	 * Constructor.
+	 * 
+	 * @param size size of the matrix, which will be size * (size + 1)/2
 	 */
-	public TriangularMatrix(int size){
-		terms = new ArrayList<E>();
+	public TriangularMatrix(int size) {
+		terms = new ArrayList<T>();
 		values = allocateMatrix(size);
 	}
-	
+
 	/**
-	 * Alloca una matrice triangolare inferiore
-	 * @param size Grandezza della matrice
-	 * @return Una matrice triangolare inferiore
+	 * Allocates a lower triangular matrix.
+	 * 
+	 * @param size size of the matrix
+	 * @return a 2D array representing a lower triangular matrix
 	 */
-	protected double[][] allocateMatrix(int size)
-	{
+	protected double[][] allocateMatrix(int size) {
 		double[][] tmp = new double[size][];
-		for(int i = 0; i < size; i++)
-			tmp[i] = new double[i+1];
+
+		for (int i = 0; i < size; i++) {
+			tmp[i] = new double[i + 1];
+		}
+
 		return tmp;
 	}
-	
-	
+
 	/**
-	 * Aumenta le dimensioni di una matrice
-	 * @param matrix La matrice iniziale
-	 * @return Una matrice grande il doppio, con gli stessi dati dell'originale
+	 * Allocates a new lower triangular matrix whose size is double the original.
+	 * Copies the content of the original matrix into the new one.
+	 * 
+	 * @param matrix original matrix
+	 * @return a 2D array with double the size of the original, storing the same
+	 *         data as before
 	 */
-	protected double[][] growSize(double[][] matrix)
-	{
+	protected double[][] growSize(double[][] matrix) {
 		int newSize = matrix.length * 2;
 		double[][] newMatrix = allocateMatrix(newSize);
-		for(int i = 0; i < matrix.length; i++){
+		for (int i = 0; i < matrix.length; i++) {
 			System.arraycopy(matrix[i], 0, newMatrix[i], 0, matrix[i].length);
 		}
 		return newMatrix;
 	}
-	
+
 	/**
-	 * Metodo che controlla se la grandezza della matrice dei valori è 
-	 * abbastanza grande, se non lo è ne aumenta la grandezza.
+	 * Grows the size of the matrix if needed.
 	 */
-	protected void checkSize(){
-		if(terms.size() > values.length)
+	protected void checkSize() {
+		if (terms.size() > values.length) {
 			values = growSize(values);
+		}
 	}
-	
-	
+
 	/**
-	 * Metodo che restituisce il valore associato al termine indicato
-	 * @param term Il termine di cui si vuole conoscere il valore associato
-	 * @return Il valore associato al termine term
+	 * Sets a value for the given term.
+	 * 
+	 * @param term  term whose value has to be set
+	 * @param value value to associate to the given term
 	 */
-	protected double getValue(E term){
-		int i;
-		if(!terms.contains(term))
-			return -1;
-		i = terms.indexOf(term);
-		
-		return values[i][i];
+	protected void setValue(T term, double value) {
+		int termIdx = addTerm(term);
+		values[termIdx][termIdx] = value;
 	}
-	
+
 	/**
-	 * Metodo che restituisce il valore associato ai termini indicati
-	 * @param first Primo termine
-	 * @param second Secondo termine
-	 * @return Il valore associato a first e second 
+	 * @param term term whose value is needed
+	 * @return the value associated to the given term.
 	 */
-	protected double getValue(E first, E second){
-		int i,j;
-		if(!(terms.contains(first) && terms.contains(second)))
+	protected double getValue(T term) {
+		if (!terms.contains(term)) {
 			return -1;
-		i = terms.indexOf(first);
-		j = terms.indexOf(second);
-		
-		if (i < j)
+		}
+
+		int termIdx = terms.indexOf(term);
+
+		return values[termIdx][termIdx];
+	}
+
+	/**
+	 * Sets a value for a couple of terms.
+	 * 
+	 * @param first  first term
+	 * @param second second term
+	 * @param value  value to associate to the pair (first, second)
+	 */
+	protected void setValue(T first, T second, double value) {
+		int i = addTerm(first);
+		int j = addTerm(second);
+
+		if (i < j) {
+			values[j][i] = value;
+		} else {
+			values[i][j] = value;
+		}
+	}
+
+	/**
+	 * @param first  first term
+	 * @param second second term
+	 * @return value associated to the couple (first, second)
+	 */
+	protected double getValue(T first, T second) {
+		if (!(terms.contains(first) && terms.contains(second))) {
+			return -1;
+		}
+
+		int i = terms.indexOf(first);
+		int j = terms.indexOf(second);
+
+		if (i < j) {
 			return values[j][i];
-		else
+		} else {
 			return values[i][j];
-		
+		}
 	}
-	
+
 	/**
-	 * Metodo che imposta un valore per un dato termine
-	 * @param term il valore di cui si vuole associare il valore
-	 * @param value il valore da associare a term
+	 * Adds the term to If it is not already present, adds it to the list of terms
+	 * and adjust the size of the value matrix if needed.
+	 * 
+	 * @param term term to add
+	 * @return the index of the term
 	 */
-	protected void setValue(E term, double value){
-		int i;
-		
-		if(!terms.contains(term)){
+	protected int addTerm(T term) {
+		if (!terms.contains(term)) {
 			terms.add(term);
 			checkSize();
 		}
-		
-		i = terms.indexOf(term);
-		values[i][i] = value;
+
+		return terms.indexOf(term);
 	}
-	
+
 	/**
-	 * Metodo che associa un valore ad una coppia di termini
-	 * @param first il primo termine della coppia
-	 * @param second il secondo termine della coppia
-	 * @param value il valore da associare alla coppia
+	 * Increments the value associated to the given term
+	 * 
+	 * @param term      term whose value must be increased
+	 * @param increment increment value
 	 */
-	protected void setValue(E first, E second, double value){
-		int i,j;
-		if(!terms.contains(first)){
-			terms.add(first);
-			checkSize();
-		}
-		
-		if(!terms.contains(second)){
-			terms.add(second);
-			checkSize();
-		}
-		
-		i = terms.indexOf(first);
-		j = terms.indexOf(second);
-		
-		if (i < j) 
-			values[j][i] = value;
-		else
-			values[i][j] = value;
-	}
-	
-	/**
-	 * Metodo che incrementa il valore associato ad un termine
-	 * @param term termine il cui valore va incrementato
-	 * @param increment incremento
-	 */
-	protected void add(E term, double increment){
+	protected void add(T term, double increment) {
 		double value = 0;
-		if(terms.contains(term))
+		if (terms.contains(term)) {
 			value = getValue(term);
-		
+		}
+
 		value += increment;
-		
+
 		setValue(term, value);
 	}
-	
+
 	/**
-	 * Metodo che incrementa il valore associato ad una coppia di termini
-	 * @param first primo termine
-	 * @param second secondo termine
-	 * @param increment incremento
+	 * Increments the value associated to a pair of terms.
+	 * 
+	 * @param first     first term
+	 * @param second    second term
+	 * @param increment increment value
 	 */
-	protected void add(E first, E second, double increment){
+	protected void add(T first, T second, double increment) {
 		double value = 0;
-		if(terms.contains(first) && terms.contains(second))
+		if (terms.contains(first) && terms.contains(second)) {
 			value = getValue(first, second);
-		
+		}
+
 		value += increment;
-		
+
 		setValue(first, second, value);
 	}
-	
-	protected void normalizeBy(double value){
-		int i,j;
-		for(i = 0; i < values.length; i++)
-			for(j = 0; j < values[i].length; j++){
+
+	/**
+	 * Normalizes the values by dividing them by the given value
+	 * 
+	 * @param value dividing factor to use to normalize
+	 */
+	protected void normalizeBy(double value) {
+		for (int i = 0; i < values.length; i++) {
+			for (int j = 0; j < values[i].length; j++) {
 				values[i][j] /= value;
 			}
+		}
 	}
-	
+
+	/** Actual 2D matrix */
 	protected double values[][];
-	protected ArrayList<E> terms;
+
+	/** List of objects representing rows and columns of the matrix */
+	protected List<T> terms;
+
+	/** Minimum size of the matrix */
 	private static final int minSize = 100;
 }

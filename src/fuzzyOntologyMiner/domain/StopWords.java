@@ -1,11 +1,27 @@
 package fuzzyOntologyMiner.domain;
-/*
- * http://code.google.com/p/iestwitter/source/browse/trunk/src/edu/shu/nlt/twitter/analysis/ontology/tech/StopWords.java?spec=svn11&r=11
- */
 
 import java.util.HashSet;
 
+/**
+ * Class storing known stop-words
+ * 
+ * This class was adapted from:
+ * http://code.google.com/p/iestwitter/source/browse/trunk/src/edu/shu/nlt/twitter/analysis/ontology/tech/StopWords.java?spec=svn11&r=11
+ */
 public class StopWords {
+	public StopWords() {
+		stopWords = new HashSet<String>(s_stopWords.length);
+
+		for (String stopWord : s_stopWords) {
+			stopWords.add(stopWord);
+		}
+	}
+
+	public boolean isStopWord(String word) {
+		return stopWords.contains(word.toLowerCase());
+
+	}
+
 	private static String[] s_stopWords = { "m", "a", "about", "above", "above", "across", "after", "afterwards",
 			"again", "against", "all", "almost", "alone", "along", "already", "also", "although", "always", "am",
 			"among", "amongst", "amoungst", "amount", "an", "and", "another", "any", "anyhow", "anyone", "anything",
@@ -37,17 +53,4 @@ public class StopWords {
 			"the", "like", "use", "generally", "example" };
 
 	private HashSet<String> stopWords;
-
-	public StopWords() {
-		stopWords = new HashSet<String>(s_stopWords.length);
-
-		for (String stopWord : s_stopWords) {
-			stopWords.add(stopWord);
-		}
-	}
-
-	public boolean isStopWord(String word) {
-		return stopWords.contains(word.toLowerCase());
-
-	}
 }

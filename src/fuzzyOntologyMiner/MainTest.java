@@ -1,5 +1,5 @@
 package fuzzyOntologyMiner;
-import java.util.ArrayList;
+import java.util.List;
 
 import fuzzyOntologyMiner.correlationFunctions.BalancedMutualInformation;
 import fuzzyOntologyMiner.correlationFunctions.CorrelationFunction;
@@ -55,8 +55,8 @@ public class MainTest {
 		System.out.println("Creo i vettori di contesto");
 		cv = FuzzyOntologyMiner.createContextVectors(tf, cf, alpha);
 		
-		ArrayList<String> concepts = cv.getConcepts();
-		ArrayList<String> terms = tf.getTerms();
+		List<String> concepts = cv.getConcepts();
+		List<String> terms = tf.getTerms();
 		
 		System.out.println(concepts.size() != terms.size());
 		

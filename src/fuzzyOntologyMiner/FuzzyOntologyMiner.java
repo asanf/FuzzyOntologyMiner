@@ -207,7 +207,7 @@ public class FuzzyOntologyMiner {
 			TermFrequencies<String> frequencies, CorrelationFunction corrFunc, double alpha){
 		int count;
 		double fc, ft, fct, membership;
-		ArrayList<String> terms = frequencies.getTerms();
+		List<String> terms = frequencies.getTerms();
 		ContextVectors<String> contextVectors = new ContextVectors<String>(terms);
 		
 		
@@ -266,10 +266,10 @@ public class FuzzyOntologyMiner {
 	public static Taxonomy<String> createTaxonomy(ContextVectors<String> contextVectors, double lambda){
 		
 		// Lista di concetti
-		ArrayList<String> concepts = contextVectors.getConcepts();
+		List<String> concepts = contextVectors.getConcepts();
 		
 		// Lista di termini
-		ArrayList<String> terms = contextVectors.getTerms();
+		List<String> terms = contextVectors.getTerms();
 		
 		// Oggetto tassonomia che verrà restitutito
 		Taxonomy<String> taxonomy = new Taxonomy<String>(concepts);
@@ -335,7 +335,7 @@ public class FuzzyOntologyMiner {
 		int i,j;
 		OWLClass s,c;
 		//iteratore dei concetti
-		ArrayList<String> concetti=tax.getConcepts();
+		List<String> concetti=tax.getConcepts();
 		
 		//gestore dell'ontologia
 		OWLOntologyManager m = OWLManager.createOWLOntologyManager();
