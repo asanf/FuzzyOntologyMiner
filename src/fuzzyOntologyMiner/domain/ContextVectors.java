@@ -1,9 +1,8 @@
-package FOM;
+package fuzzyOntologyMiner.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
-import Util.DTMatrix;
 
-public class ContextVectors<E> extends DTMatrix<E> implements Iterable<E>{
+public class ContextVectors<E> extends TriangularMatrix<E> implements Iterable<E>{
 
 
 	/**

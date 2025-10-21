@@ -1,4 +1,4 @@
-package FOM;
+package fuzzyOntologyMiner.domain;
 
 import java.util.Iterator;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package CFM;
+package fuzzyOntologyMiner.correlationFunctions;
 
 /*
  * Interfaccia per le misure di correlazione

@@ -1,21 +1,21 @@
-package CFM;
+package fuzzyOntologyMiner.correlationFunctions;
 
 
 /*
  * Balanced Mutual Information (BMI)
  * calcola il grado di associazione tra due termini
  */
-public class BMI implements CorrelationFunction{
+public class BalancedMutualInformation implements CorrelationFunction{
 	
 	private double beta;
 	private static final double def_beta=0.51f;
-	private static PMI mi = new PMI();
+	private static PointwiseMutualInformation mi = new PointwiseMutualInformation();
 	
-	public BMI(){
+	public BalancedMutualInformation(){
 		this(def_beta);
 	}
 	
-	public BMI(double b){
+	public BalancedMutualInformation(double b){
 		this.beta=b;
 	}
 	

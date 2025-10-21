@@ -1,18 +1,18 @@
-package Util;
+package fuzzyOntologyMiner.domain;
 import java.util.ArrayList;
 
 /**
  * Classe che modella una matrice triangolare espandibile dinamicamente
  * 
  */
-public class DTMatrix<E> {
+public class TriangularMatrix<E> {
 	
 	
 	
 	/**
 	 * Costruttore base
 	 */
-	public DTMatrix(){
+	public TriangularMatrix(){
 		this(minSize);
 	}
 	
@@ -21,7 +21,7 @@ public class DTMatrix<E> {
 	 * Costruttore con parametro
 	 * @param size grandezza della matrice, che sarà size * (size + 1)/2
 	 */
-	public DTMatrix(int size){
+	public TriangularMatrix(int size){
 		terms = new ArrayList<E>();
 		values = allocateMatrix(size);
 	}

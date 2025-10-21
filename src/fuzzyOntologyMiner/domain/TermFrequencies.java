@@ -1,14 +1,12 @@
-package FOM;
+package fuzzyOntologyMiner.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import Util.DTMatrix;
 
 /**
  * Classe che conserva sia le frequenze singole che quelle congiunte 
  * @param <E> Classe degli oggetti di cui si vuole conservare la frequenza
  */
-public class TermFrequencies<E> extends DTMatrix<E> implements Iterable<E> {
+public class TermFrequencies<E> extends TriangularMatrix<E> implements Iterable<E> {
 
 	/**
 	 * Costruttore base

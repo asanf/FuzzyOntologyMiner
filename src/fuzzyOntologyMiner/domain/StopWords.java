@@ -1,4 +1,4 @@
-package FOM;
+package fuzzyOntologyMiner.domain;
 /*
  * http://code.google.com/p/iestwitter/source/browse/trunk/src/edu/shu/nlt/twitter/analysis/ontology/tech/StopWords.java?spec=svn11&r=11
  */

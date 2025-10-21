@@ -1,7 +1,11 @@
-package FOM;
-import CFM.BMI;
-import CFM.CorrelationFunction;
+package fuzzyOntologyMiner;
 import java.util.ArrayList;
+
+import fuzzyOntologyMiner.correlationFunctions.BalancedMutualInformation;
+import fuzzyOntologyMiner.correlationFunctions.CorrelationFunction;
+import fuzzyOntologyMiner.domain.ContextVectors;
+import fuzzyOntologyMiner.domain.Taxonomy;
+import fuzzyOntologyMiner.domain.TermFrequencies;
 
 public class MainTest {
 	public static void main(String[] args)
@@ -47,7 +51,7 @@ public class MainTest {
 		}
 		
 		ContextVectors<String> cv;
-		CorrelationFunction cf = new BMI(beta);
+		CorrelationFunction cf = new BalancedMutualInformation(beta);
 		System.out.println("Creo i vettori di contesto");
 		cv = FuzzyOntologyMiner.createContextVectors(tf, cf, alpha);
 		

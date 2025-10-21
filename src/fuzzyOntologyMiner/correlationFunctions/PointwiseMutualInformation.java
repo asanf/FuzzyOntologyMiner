@@ -1,11 +1,11 @@
-package CFM;
+package fuzzyOntologyMiner.correlationFunctions;
 
 
 /*
  * Mutual Information
  * metodo che calcola la dipendenza tra due entit�
  */
-public class PMI implements CorrelationFunction{
+public class PointwiseMutualInformation implements CorrelationFunction{
 	private static final int num = 2048;
 	
 

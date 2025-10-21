@@ -1,9 +1,15 @@
-package FOM;
+package fuzzyOntologyMiner;
 
 import java.io.File;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
+import fuzzyOntologyMiner.correlationFunctions.CorrelationFunction;
+import fuzzyOntologyMiner.domain.ContextVectors;
+import fuzzyOntologyMiner.domain.StopWords;
+import fuzzyOntologyMiner.domain.Taxonomy;
+import fuzzyOntologyMiner.domain.TermFrequencies;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -31,8 +37,6 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
 import edu.stanford.nlp.process.Morphology;
-
-import CFM.CorrelationFunction;
 
 public class FuzzyOntologyMiner {
 	
