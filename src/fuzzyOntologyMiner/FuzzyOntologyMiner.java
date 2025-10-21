@@ -228,7 +228,7 @@ public class FuzzyOntologyMiner {
 				fct = frequencies.getFrequency(concept, term);
 				
 				// calcolo la membership, appartenenza di term a concept
-				membership = corrFunc.calculateCorrelation(fc, ft, fct);
+				membership = corrFunc.calculate(fc, ft, fct);
 				
 				contextVectors.setMembership(term, concept, membership);
 			}
