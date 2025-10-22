@@ -3,7 +3,7 @@ package fuzzyOntologyMiner.correlationFunctions;
 /**
  * Balanced Mutual Information (BMI)
  * 
- * Implementation of the {@link CorrelationFunction} which uses the <b>Balanced
+ * Implementation of the {@link ICorrelationFunction} which uses the <b>Balanced
  * Mutual Information</b>, which takes in consideration both the presence and
  * the <i>absence</i> of terms.
  * 
@@ -19,7 +19,7 @@ package fuzzyOntologyMiner.correlationFunctions;
  * absence of the two terms. The second term, multiplied by (1 - beta), checks
  * situations in which a term is present and other is absent.
  */
-public class BalancedMutualInformation implements CorrelationFunction {
+public class BalancedMutualInformation implements ICorrelationFunction {
 
 	/** Base constructor, uses default beta value */
 	public BalancedMutualInformation() {

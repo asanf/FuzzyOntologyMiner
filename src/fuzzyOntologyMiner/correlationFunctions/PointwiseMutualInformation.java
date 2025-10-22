@@ -3,12 +3,12 @@ package fuzzyOntologyMiner.correlationFunctions;
 /**
  * Pointwise Mutual Information.
  * 
- * Implementation of the {@link CorrelationFunction} interface which calculates
+ * Implementation of the {@link ICorrelationFunction} interface which calculates
  * the correlation using standard pointwise mutual information, i.e.
  * 
  * PMI(X, Y) = log2{p(X, Y) / [p(X)p(Y)]}
  */
-public class PointwiseMutualInformation implements CorrelationFunction {
+public class PointwiseMutualInformation implements ICorrelationFunction {
 
 	@Override
 	public double calculate(double freq_x, double freq_y, double freq_x_y) {

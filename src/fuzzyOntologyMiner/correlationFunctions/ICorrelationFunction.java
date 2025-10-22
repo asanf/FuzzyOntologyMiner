@@ -3,7 +3,7 @@ package fuzzyOntologyMiner.correlationFunctions;
 /**
  * Defines a method to calculate correlation between two terms.
  */
-public interface CorrelationFunction {
+public interface ICorrelationFunction {
 
     /**
      * Calculates the correlation between two terms, X and Y.

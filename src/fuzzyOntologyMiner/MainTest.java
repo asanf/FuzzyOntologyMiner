@@ -2,7 +2,7 @@ package fuzzyOntologyMiner;
 import java.util.List;
 
 import fuzzyOntologyMiner.correlationFunctions.BalancedMutualInformation;
-import fuzzyOntologyMiner.correlationFunctions.CorrelationFunction;
+import fuzzyOntologyMiner.correlationFunctions.ICorrelationFunction;
 import fuzzyOntologyMiner.domain.ContextVectors;
 import fuzzyOntologyMiner.domain.Taxonomy;
 import fuzzyOntologyMiner.domain.TermFrequencies;
@@ -51,7 +51,7 @@ public class MainTest {
 		}
 		
 		ContextVectors<String> cv;
-		CorrelationFunction cf = new BalancedMutualInformation(beta);
+		ICorrelationFunction cf = new BalancedMutualInformation(beta);
 		System.out.println("Creo i vettori di contesto");
 		cv = FuzzyOntologyMiner.createContextVectors(tf, cf, alpha);
 		
