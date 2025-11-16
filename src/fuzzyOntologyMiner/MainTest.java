@@ -81,7 +81,5 @@ public class MainTest {
 				if(spec > 0)
 					System.out.println(c1 + " is " + c2 + ": " + taxonomy.getSpecificity(c1, c2));
 			}
-		
 	}
-
 }

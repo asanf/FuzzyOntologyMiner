@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import fuzzyOntologyMiner.dataStructures.TriangularMatrix;
+
 /**
  * Allows to compute both single and mutual frequencies of terms.
  * 
  * The frequency is to be intended as
  *
  * number of text windows in which the term(s) appeared
- * ----------------------------------------------------- total number of text
- * windows
+ * ----------------------------------------------------- 
+ * total number of text windows
  *
  * @param <TermType> Type of the terms
  */

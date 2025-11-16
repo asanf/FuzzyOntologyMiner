@@ -1,4 +1,4 @@
-package fuzzyOntologyMiner.domain;
+package fuzzyOntologyMiner.dataStructures;
 
 import java.util.List;
 import java.util.ArrayList;

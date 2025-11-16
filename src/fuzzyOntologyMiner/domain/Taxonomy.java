@@ -71,21 +71,96 @@ public class Taxonomy<ConceptType> implements Iterable<ConceptType> {
 	 * weakest link than the direct membership between the first and last.
 	 */
 	public void taxonomyPruning() {
-		/* Value used to force high distance between disconnected nodes */
-		int INFINITE = Integer.MAX_VALUE;
+		/* Keep only the strongest relation between two concepts */
+		discardWeakestRelation();
 
-		/* Iteration indexes */
-		int i, j, k;
+		/* Calculate distance matrix */
+    double[][] distance = computeDistances();
 
-		/**/
+		/* Delete relations for which a strongest chain of links has been found */
+    int numConcepts = concepts.size();
+		for (int i = 0; i < numConcepts; i++) {
+			for (int j = 0; j < numConcepts; j++) {
+				if ((distance[i][j] > relations[i][j]) && relations[i][j] > 0) {
+					relations[i][j] = 0;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Computes a distance matrix based on relationships between concepts.
+	 * 
+	 * The matrix is calculated as such: 
+	 * - the distance of a concept to itself is 0
+	 * - the distance of two concepts (i, j) is 
+	 *   - infinite if their relationship is negative
+	 *   - equal to the shortest path from i to j if each edge of the path is strongest than the relationship
+	 *     between i and j
+	 *   - equal to their relationship otherwise
+	 *   
+	 * This makes it so that weak links between concepts are not considered if there is a strongest
+	 * chain of links.
+	 * 
+	 * For this goal an adaptation of the Floyd-Warshall algorithm has been developed.
+	 * The algorithm discards a path i-k, k-j if any of those two edges is weaker than the direct
+	 * edge i-j. In this way it is assured that the path is considered only if
+	 * 
+	 * rel(i, j) < min(rel(i, k), rel(k, j)) must be true for each k
+	 * 
+	 * TODO: what if instead of shortest path on relations, we perform shortest path on 1-relation?
+	 * If two concepts have a relation equal to.8, then 1 - rel(i, j) = .2
+	 * This would make searching for the shortest path more meaningful, as a lower value indicates
+	 * a stronger relation.
+	 * 
+	 * @return a matrix of doubles containing the distances between each pair of concepts.
+	 */
+  private double[][] computeDistances() {
+    int i, j, k;
+    int numConcepts = concepts.size();
+    double distance[][] = new double[numConcepts][numConcepts];
+		
+    /* Initialize distance of a concept to itself */
+    for (i = 0; i < numConcepts; i++) {
+      distance[i][i] = 0;
+    }
+    
+    /* Initialize distance between couple of concepts */
+		for (i = 0; i < numConcepts; i++) {
+			for (j = 0; j < numConcepts; j++) {			
+				distance[i][j] = (relations[i][j] > 0) ? relations[i][j] : Integer.MAX_VALUE;
+			}
+		}
+		
+    /* Adaptation of Floyd-Warshall algorithms for all-pairs shortest path. */
 		double cumulativeDistance;
-		int numConcepts = concepts.size();
-		double distance[][] = new double[numConcepts][numConcepts];
+    for (k = 0; k < numConcepts; k++) {
+      for (i = 0; i < numConcepts; i++) {
+        for (j = 0; j < numConcepts; j++) {
 
-		/*
-		 * Keep only the strongest relationships. This is the maximum between
-		 * relations[i][j] and relations[j][i]
-		 */
+          /* Consider the path passing by k only if both i-k and k-j are strongest than the direct link */
+          if (relations[i][k] > relations[i][j] && relations[k][j] > relations[i][j]) {
+            cumulativeDistance = distance[i][k] + distance[k][j];
+            if (cumulativeDistance < distance[i][j]) {
+              distance[i][j] = cumulativeDistance;
+            }
+          }
+        }
+      }
+    }
+		
+    return distance;
+  }
+
+	/**
+   * Keeps only the strongest relationships. This is the maximum between
+   * relations[i][j] and relations[j][i]
+   */
+  private void discardWeakestRelation() {
+    int i;
+    int j;
+    int numConcepts = concepts.size();
+    
 		for (i = 0; i < numConcepts; i++) {
 			for (j = i; j < numConcepts; j++) {
 				if (relations[i][j] != relations[j][i]) {
@@ -97,59 +172,7 @@ public class Taxonomy<ConceptType> implements Iterable<ConceptType> {
 				}
 			}
 		}
-
-		/* Initializes the distances matrix */
-		for (i = 0; i < numConcepts; i++) {
-			for (j = 0; j < numConcepts; j++) {
-				/* distance of a node to itself is 0 */
-				if (i == j) {
-					distance[i][j] = 0;
-					continue;
-				}
-
-				/*
-				 * distance[i][j] is set to an arbitrary high distance if the nodes have
-				 * negative relationship
-				 */
-				distance[i][j] = (relations[i][j] > 0) ? relations[i][j] : INFINITE;
-			}
-		}
-
-		/*
-		 * Adaptation of Floyd-Warshall algorithms for all-pairs shortest path.
-		 */
-		for (k = 0; k < numConcepts; k++) {
-			for (i = 0; i < numConcepts; i++) {
-				for (j = 0; j < numConcepts; j++) {
-
-					/*
-					 * The following checks discards a path from i to j passing by k if any of the
-					 * connections in the path is weaker than the direct one from i to j.
-					 * 
-					 * i.e. rel(i, j) < min(rel(i, k), rel(k, j)) must be true for each k
-					 */
-					if (relations[i][k] > relations[i][j] && relations[k][j] > relations[i][j]) {
-						cumulativeDistance = distance[i][k] + distance[k][j];
-						if (cumulativeDistance < distance[i][j]) {
-							distance[i][j] = cumulativeDistance;
-						}
-					}
-				}
-			}
-		}
-
-		/*
-		 * Actually delete a relationship if a strongest chain of relations has been
-		 * found
-		 */
-		for (i = 0; i < numConcepts; i++) {
-			for (j = 0; j < numConcepts; j++) {
-				if ((distance[i][j] > relations[i][j]) && relations[i][j] > 0) {
-					relations[i][j] = 0;
-				}
-			}
-		}
-	}
+  }
 
 	@Override
 	/**

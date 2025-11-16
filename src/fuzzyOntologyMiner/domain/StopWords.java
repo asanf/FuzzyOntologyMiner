@@ -1,6 +1,8 @@
 package fuzzyOntologyMiner.domain;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Class storing known stop-words
@@ -9,20 +11,22 @@ import java.util.HashSet;
  * http://code.google.com/p/iestwitter/source/browse/trunk/src/edu/shu/nlt/twitter/analysis/ontology/tech/StopWords.java?spec=svn11&r=11
  */
 public class StopWords {
-	public StopWords() {
-		stopWords = new HashSet<String>(s_stopWords.length);
+	
 
-		for (String stopWord : s_stopWords) {
-			stopWords.add(stopWord);
-		}
+  /**
+   * Checks if the given word is a stop word
+   * @param word the word to check
+   * @return true if the word is registered as a stop word
+   */
+	public static boolean isStopWord(String word) {
+		return STOP_WORDS_SET.contains(word.toLowerCase());
+
 	}
 
-	public boolean isStopWord(String word) {
-		return stopWords.contains(word.toLowerCase());
-
-	}
-
-	private static String[] s_stopWords = { "m", "a", "about", "above", "above", "across", "after", "afterwards",
+	/** Private constructor. This class provides only static methods */
+	private StopWords() {}
+	
+	private static final String[] STOP_WORDS = { "m", "a", "about", "above", "above", "across", "after", "afterwards",
 			"again", "against", "all", "almost", "alone", "along", "already", "also", "although", "always", "am",
 			"among", "amongst", "amoungst", "amount", "an", "and", "another", "any", "anyhow", "anyone", "anything",
 			"anyway", "anywhere", "are", "around", "as", "at", "back", "be", "became", "because", "become", "becomes",
@@ -52,5 +56,5 @@ public class StopWords {
 			"will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves",
 			"the", "like", "use", "generally", "example" };
 
-	private HashSet<String> stopWords;
+	private static final Set<String> STOP_WORDS_SET = new HashSet<>(Arrays.asList(STOP_WORDS));
 }

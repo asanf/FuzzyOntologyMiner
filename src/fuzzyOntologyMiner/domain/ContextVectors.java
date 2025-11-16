@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import fuzzyOntologyMiner.dataStructures.TriangularMatrix;
+
 /**
  * Context vectors creation and storage.
  * 
@@ -84,43 +86,88 @@ public class ContextVectors<TermType> extends TriangularMatrix<TermType> impleme
 	}
 
 	/**
-	 * Deletes a concept
-	 * 
-	 * @param concept the concept to delete.
+	 * Finalizes the Context vectors calculation by
+	 *  - normalizing memberships in the [0, 1] range
+	 *  - deleting concepts which have no describing term with a membership value
+	 *    greater than alpha
+	 * @param alpha threshold value in range [0, 1] to determine meaningful concepts. 
+	 *              A concept is meaningful if it has at least a describing term with membership value >= alpha
+	 * @throws IllegalArgumentException if alpha is outside the range [0, 1]
 	 */
-	public void deleteConcept(TermType concept) {
-		setValue(concept, -1);
+	public void finalize(double alpha) throws IllegalArgumentException {
+	  normalizeMemberships();
+	  conceptPruning(alpha);
 	}
 
 	/**
 	 * Normalizes the membership degrees in the [0, 1] interval.
 	 */
-	public void normalizeMemberships() {
-		int termIdx;
+	private void normalizeMemberships() {
+		int currTermIdx;
 		List<TermType> concepts = getConcepts();
-		double min = 100000, max = -100000;
+		double min = Double.MAX_VALUE, max = -Double.MAX_VALUE;
 
 		/* Find the minimum and maximum membership values */
 		for (TermType concept : concepts) {
-			termIdx = terms.indexOf(concept);
-			for (int j = 0; j < this.values[termIdx].length - 1; j++) {
-				if (values[termIdx][j] < min)
-					min = values[termIdx][j];
-				if (values[termIdx][j] > max)
-					max = values[termIdx][j];
+			currTermIdx = terms.indexOf(concept);
+			for (int otherTermIdx = 0; otherTermIdx < this.values[currTermIdx].length - 1; otherTermIdx++) {
+				if (values[currTermIdx][otherTermIdx] < min)
+					min = values[currTermIdx][otherTermIdx];
+				if (values[currTermIdx][otherTermIdx] > max)
+					max = values[currTermIdx][otherTermIdx];
 			}
 		}
 
 		/* normalize using linear scaling */
 		for (TermType concept : concepts) {
-			termIdx = terms.indexOf(concept);
+			currTermIdx = terms.indexOf(concept);
 
-			for (int j = 0; j < this.values[termIdx].length - 1; j++) {
-				values[termIdx][j] = (values[termIdx][j] - min) / (max - min);
+			for (int otherTermIdx = 0; otherTermIdx < this.values[currTermIdx].length - 1; otherTermIdx++) {
+				values[currTermIdx][otherTermIdx] = (values[currTermIdx][otherTermIdx] - min) / (max - min);
 			}
 		}
-
 	}
+	
+	/**
+	 * Cleans the list of concept by deleting those with no describing term whose relationship value
+	 * is greater than a threshold.
+	 * @param alpha parameter in range [0, 1] to use to prune concepts.
+	 * @throws IllegalArgumentException if alpha is outside the range [0, 1]
+	 */
+	private void conceptPruning(double alpha) throws IllegalArgumentException {
+	  if (alpha < 0 || alpha > 1) throw new IllegalArgumentException("alpha not in [0, 1]");
+	  
+	  boolean significant;
+	  int termIdx;
+	  
+	  for (TermType concept: terms) {
+	    significant = false;
+	    termIdx = 0;
+	    
+	    /*
+       * Check if the concept has at least a term describing it with a membership of
+       * at least alpha
+       */
+	    while (!significant && termIdx < terms.size()) {
+	      significant = getMembership(concept, terms.get(termIdx)) >= alpha;
+	      termIdx++;
+	    }
+	    
+	    /* If there is no such term, the concept is not relevant */
+	    if (!significant) {
+	      deleteConcept(concept);
+	    }
+	  }
+	}
+	
+	 /**
+   * Deletes a concept.
+   * 
+   * @param concept the concept to delete.
+   */
+  private void deleteConcept(TermType concept) {
+    setValue(concept, -1);
+  }
 
 	public String toString() {
 		String toRet = "";
