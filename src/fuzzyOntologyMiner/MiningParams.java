@@ -72,7 +72,7 @@ public class MiningParams implements IMiningParams {
   }
 
   @Override
-  public void setWindowSize(byte windowSize) {
+  public void setWindowSize(int windowSize) {
     if (windowSize <= 0) {
       throw new IllegalArgumentException("Window size must be a positive number.");
     }
@@ -80,7 +80,7 @@ public class MiningParams implements IMiningParams {
   }
 
   @Override
-  public byte getWindowSize() {
+  public int getWindowSize() {
     return this.windowSize;
   }
 
@@ -165,7 +165,7 @@ public class MiningParams implements IMiningParams {
   private Path                 inputLocation;
   private Path                 outputOntologyPath;
   private String               taggerModelFile;
-  private byte                 windowSize;
+  private int                  windowSize;
   private double               minTermFrequency;
   private double               maxTermFrequency;
   private ICorrelationFunction correlationFunction;

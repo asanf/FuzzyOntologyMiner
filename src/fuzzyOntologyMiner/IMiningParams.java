@@ -55,12 +55,12 @@ public interface IMiningParams {
 	 * 
 	 * @param windowSize number of terms in a tagged sentence to be considered a window
 	 */
-	void setWindowSize(byte windowSize);
+	void setWindowSize(int windowSize);
 	
 	/**
 	 * @return the number of terms to be analyzed in a single window
 	 */
-	byte getWindowSize();
+	int getWindowSize();
 	
 	/**
 	 * Adds a pattern of POS Tags to search in the document corpus and treat as terms of interest.  

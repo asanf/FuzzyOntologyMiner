@@ -14,14 +14,10 @@ import fuzzyOntologyMiner.postag.PosTag;
 
 public class MainTest {
   public static void main(String[] args) {
-    String[] inputPaths = new String[3];
-    inputPaths[0] = "Reuters";
-    inputPaths[1] = "Sicurezza";
-    inputPaths[2] = "Hackers";
     
     IMiningParams miningParams = new MiningParams();
     
-    miningParams.setInputDocumentsLocation(Paths.get(inputPaths[2]));
+    miningParams.setInputDocumentsLocation(Paths.get(args[0]));
     
     /* Search patterns */
     miningParams.addMiningPattern(PosTag.NOUN);
@@ -32,21 +28,23 @@ public class MainTest {
     
     /* Term frequencies extraction parameters */
     miningParams.setTaggerModel("left3words-wsj-0-18.tagger");
-    miningParams.setWindowSize((byte) 7);
-    miningParams.setTermFrequencyThresholds(0.03, 0.55);
+    miningParams.setWindowSize(10);
+    miningParams.setTermFrequencyThresholds(0.03, 0.8);
     
     /* Concept extraction parameters */
-    miningParams.setConceptFilteringThreshold(0.02);
-    miningParams.setCorrelationFunction(new BalancedMutualInformation(0.55));
+    miningParams.setConceptFilteringThreshold(0.05);
+    miningParams.setCorrelationFunction(new BalancedMutualInformation(0.67));
     
     /* Taxonomy parameters */
     miningParams.setConceptRelationFilterThreshold(0.022);
     
     /* Ontology output */
-    miningParams.setOutputOntologyLocation(Paths.get("ontology"));
+    miningParams.setOutputOntologyLocation(Paths.get(args[1]));
     
     try {
+      System.out.println("Start mining...");
       FuzzyOntologyMiner.mine(miningParams);
+      System.out.println("Finished");
     } catch (ClassNotFoundException | OWLOntologyCreationException | OWLOntologyStorageException | IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
