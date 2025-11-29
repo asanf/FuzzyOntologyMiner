@@ -9,12 +9,15 @@ import fuzzyOntologyMiner.domain.ContextVectors;
 import fuzzyOntologyMiner.domain.StopWords;
 import fuzzyOntologyMiner.domain.Taxonomy;
 import fuzzyOntologyMiner.domain.TermFrequencies;
+import fuzzyOntologyMiner.frequencies.ITermsExtractor;
+import fuzzyOntologyMiner.frequencies.NaiveTermsExtractor;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -41,51 +44,46 @@ import edu.stanford.nlp.process.Morphology;
 
 public class FuzzyOntologyMiner {
 
+  public static void mine(IMiningParams params) throws ClassNotFoundException, IOException, OWLOntologyCreationException, OWLOntologyStorageException {
+    TermFrequencies<String> termFrequencies = extractFrequencies(params);
+    ContextVectors<String> contextVectors = createContextVectors(termFrequencies, 
+                                                                 params.getCorrelationFunction(),
+                                                                 params.getConceptFilteringThreshold());
+    Taxonomy<String> taxonomy = createTaxonomy(contextVectors, params.getConceptRelationFilterThreshold());
+    saveOWL2FuzzyOntology(taxonomy, params.getOutputOntologyLocation());
+  }
+
   /**
-   * Metodo che restituisce la matrice di frequenze dei termini nella collezione
-   * di documenti
+   * Method which computes the frequency matrix of the terms in the document
+   * corpus.
    * 
-   * @param path          Path della cartella contenente i documenti da cui
-   *                      estrarre l'ontologia
-   * @param windowSize    Numero di termini di cui deve essere termosta la
-   *                      finestra scorrevole
-   * @param searchPattern Array di Tag indicanti il pattern di termini su cui ci
-   *                      si vuole focalizzare: non vi è controllo sulla
-   *                      correttezza di questi tag, si da per scontato che siano
-   *                      correttamente inseriti e siano nella forma
-   *                      "NN","NNS","ADJ"
-   * @return Un oggetto di tipo TermFrequencies<String> contenente le frequenze
-   *         mutue e assolute dei termini.
-   * @throws IllegalArgumentException Se il numero di pattern è maggiore della
-   *                                  grandezza della finestra scorrevole, o se il
-   *                                  path non è una directory.
-   * @throws ClassNotFoundException
+   * @param params {@link IMiningParams} object containing the mining
+   *               configuration
+   * 
+   * @return A {@link TermFrequencies<String>} containing the terms and their
+   *         absolute and relative frequencies.
    * @throws IOException
+   * @throws ClassNotFoundException
    */
-  public static TermFrequencies<String> extractFrequencies(String path, int windowSize, String[] searchPattern)
-      throws IllegalArgumentException, ClassNotFoundException, IOException {
+  public static TermFrequencies<String> extractFrequencies(IMiningParams params)
+      throws ClassNotFoundException, IOException {
 
-    if (searchPattern.length > windowSize) {
-      throw new IllegalArgumentException("Il numero di tag non può essere maggiore della grandezza della finestra.");
-    }
-
-    File dir = new File(path);
-
-    if (!dir.isDirectory()) {
-      throw new IllegalArgumentException(path + " is not a directory.");
-    }
+    File dir = params.getInputDocumentsLocation().toFile();
 
     TermFrequencies<String> freq = new TermFrequencies<String>();
-    MaxentTagger tagger = new MaxentTagger("left3words-wsj-0-18.tagger");
+    // MaxentTagger tagger = new MaxentTagger("left3words-wsj-0-18.tagger");
+    MaxentTagger tagger = new MaxentTagger(params.getTaggerModel().toString());
     File[] listOfFiles = dir.listFiles();
+    ITermsExtractor termsExtractor = new NaiveTermsExtractor();
+    termsExtractor.compile(params.getMiningPatterns());
+    int windowSize = params.getWindowSize();
 
     for (File file : listOfFiles) {
       if (file.isFile()) {
+        // TODO generalize document read (pdf, text, word, ecc.)
         List<List<HasWord>> sentences = MaxentTagger.tokenizeText(new BufferedReader(new FileReader(file)));
-        
-        /*
-         * Lavoro su ogni frase separatamente
-         */
+
+        /* For each sentence */
         for (List<HasWord> sentence : sentences) {
           /*
            * filtered sentence conterrà parole taggate escluse stop words e punteggiatura
@@ -98,76 +96,36 @@ public class FuzzyOntologyMiner {
            * tag delle parole rispettano il pattern di ricerca specificato come parametro
            * della classe, nel qual caso si memorizzano le relative frequenze.
            */
-          for (int windowIdx = 0; windowIdx < preparedSentence.size() - windowSize + 1; windowIdx++) {
 
+          int numWindows = preparedSentence.size() - windowSize + 1;
+          for (int windowIdx = 0; windowIdx < numWindows; windowIdx++) {
+            // TODO what if windowSize > sentence.length()?
             // Array contenente i termini già visti in questa finestra
             TreeSet<String> termsInWindow = new TreeSet<>();
             freq.augmentWindows();
+            termsInWindow.addAll(termsExtractor.extract(preparedSentence.subList(windowIdx, windowIdx + windowSize)));
 
-            /* TODO BEGIN TERMS EXTRACTION */
-            // Per ogni termine nella finestra
-            for (int termIdx = windowIdx; termIdx < windowIdx + windowSize; termIdx++) {
-              String term = "";
-
-              
-              if ((termIdx + searchPattern.length) < preparedSentence.size()) {
-
-                // per ogni tag nel pattern di ricerca
-                for (int tagIdx = 0; tagIdx < searchPattern.length; tagIdx++) {
-
-                  // estraggo il termine j+k
-                  TaggedWord curr = preparedSentence.get(termIdx + tagIdx);
-
-                  // se il tag non corrisponde a quello cercato
-                  if (!curr.tag().equalsIgnoreCase(searchPattern[tagIdx])) {
-
-                    /*
-                     * Allora il termine j-esimo non è il primo del pattern cercato, quindi è un
-                     * termine che devo considerare da solo
-                     */
-                    term = preparedSentence.get(termIdx).word();
-                    break;
-                  }
-
-                  // se invece il j+k-esimo termine rispetta il tag lo aggiungo a term
-                  term += (curr.word() + " ");
-
-                  /*
-                   * se sono all'ultima iterazione e term contiene il termine che rispetta il
-                   * searchPattern, allora devo spostarmi in avanti di k termini all'interno della
-                   * filteredSentence.
-                   */
-                  if (tagIdx + 1 == searchPattern.length)
-                    termIdx += tagIdx;
-                }
-              } else {
-                term = preparedSentence.get(termIdx).word();
-              }
-              /* TODO END TERMS EXTRACTION */
-
-              termsInWindow.add(term);
-
-            } // words in  window loop end
-            
-            for (String term: termsInWindow) {
+            for (String term : termsInWindow) {
               freq.addOccurrence(term);
-              for (String otherTerm: termsInWindow.tailSet(term, false)) {
+              for (String otherTerm : termsInWindow.tailSet(term, false)) {
                 freq.addOccurrence(term, otherTerm);
               }
             }
-            
+
           } // Windows loop end
         }
       }
     }
+
     // calcolo le frequenze dividendo per il numero di finestre
     freq.computeFrequencies();
+    freq.filterTerms(params.getMinAllowedTermFrequency(), params.getMaxAllowedTermFrequency());
     return freq;
   }
 
   private static List<TaggedWord> prepareSentence(MaxentTagger tagger, List<HasWord> sentence) {
     List<TaggedWord> preparedSentence = new ArrayList<TaggedWord>();
-    
+
     // si effettua il POS tagging sulla frase
     List<TaggedWord> taggedSentence = tagger.tagSentence(sentence);
 
@@ -312,54 +270,52 @@ public class FuzzyOntologyMiner {
    * @throws OWLOntologyStorageException
    * @throws FileNotFoundException
    **/
-  public void saveOWL2FuzzyOntology(Taxonomy<String> tax, String fileName)
+  public static void saveOWL2FuzzyOntology(Taxonomy<String> tax, Path output)
       throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
-    int i, j;
-    OWLClass s, c;
-    // iteratore dei concetti
-    List<String> concetti = tax.getConcepts();
 
     // gestore dell'ontologia
-    OWLOntologyManager m = OWLManager.createOWLOntologyManager();
+    OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
     // iri di riferimento per l'ontologia
-    IRI ontIRI = IRI.create("http://www.semanticweb.org/ontologies/concetti");
+    IRI ontologyIRI = IRI.create("http://www.semanticweb.org/ontologies/concepts");
     // crea ontologia
-    OWLOntology ont = m.createOntology(ontIRI);
+    OWLOntology ontology = ontologyManager.createOntology(ontologyIRI);
     // gestore interfaccia per l'ontologia
-    OWLDataFactory factory = m.getOWLDataFactory();
+    OWLDataFactory factory = ontologyManager.getOWLDataFactory();
 
     // Per ogni concetto crea una classe nell'ontologia
-    Map<String, OWLClass> classi = new HashMap<String, OWLClass>();
-    for (String con : concetti) {
-
-      IRI iriClass = IRI.create(ontIRI + "#" + con);
+    Map<String, OWLClass> owlClasses = new HashMap<String, OWLClass>();
+    List<String> concepts = tax.getConcepts();
+    for (String concept : concepts) {
+      IRI iriClass = IRI.create(ontologyIRI + "#" + concept);
       OWLClass cl = factory.getOWLClass(iriClass);
-      classi.put(con, cl);
+      owlClasses.put(concept, cl);
     }
-
-    for (i = 0; i < concetti.size(); i++) {
-      for (j = 0; j < concetti.size(); j++) {
-        String sub = concetti.get(j);
-        String cls = concetti.get(i);
+    
+    int i, j;
+    OWLClass s, c;
+    for (i = 0; i < concepts.size(); i++) {
+      for (j = 0; j < concepts.size(); j++) {
+        String sub = concepts.get(j);
+        String cls = concepts.get(i);
         double spec = tax.getSpecificity(sub, cls);
         if (spec > 0) {
           OWLAnnotation fuzzyAnnotation = createFuzzyAnnotation(factory, spec);
 
-          Set<OWLAnnotation> annotazioni = new HashSet<OWLAnnotation>();
-          annotazioni.add(fuzzyAnnotation);
+          Set<OWLAnnotation> annotations = new HashSet<OWLAnnotation>();
+          annotations.add(fuzzyAnnotation);
 
-          s = classi.get(sub);
-          c = classi.get(cls);
-          OWLAxiom axiom = factory.getOWLSubClassOfAxiom(s, c, annotazioni);
+          s = owlClasses.get(sub);
+          c = owlClasses.get(cls);
+          OWLAxiom axiom = factory.getOWLSubClassOfAxiom(s, c, annotations);
 
-          AddAxiom add = new AddAxiom(ont, axiom);
-          m.applyChange(add);
+          AddAxiom add = new AddAxiom(ontology, axiom);
+          ontologyManager.applyChange(add);
         }
       }
     }
 
     // salvo l'ontologia su file
-    m.saveOntology(ont, new FileOutputStream(fileName));
+    ontologyManager.saveOntology(ontology, new FileOutputStream(output.toString()));
   }
 
   public static OWLAnnotation createFuzzyAnnotation(OWLDataFactory f, double value) {

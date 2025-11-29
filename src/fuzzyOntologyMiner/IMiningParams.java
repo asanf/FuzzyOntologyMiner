@@ -1,9 +1,12 @@
 package fuzzyOntologyMiner;
 
 import java.nio.file.Path;
+import java.util.List;
 
 import fuzzyOntologyMiner.correlationFunctions.ICorrelationFunction;
 import fuzzyOntologyMiner.domain.ContextVectors;
+import fuzzyOntologyMiner.postag.PosTag;
+import fuzzyOntologyMiner.postag.PosTagPattern;
 
 /**
  * Collection of parameters to customize the ontology extraction.
@@ -37,12 +40,12 @@ public interface IMiningParams {
 	 * Sets the path to the model to be used with the Stanford Pos Tagger
 	 * @param modelFile path to the model file
 	 */
-	void setTaggerModel(Path modelFile);
+	void setTaggerModel(String modelFile);
 	
 	/**
 	 * @return the path to the tagger model file
 	 */
-	Path getTaggerModel();
+	String getTaggerModel();
 	
 	/**
 	 * Sets the size of the sliding text window used to compute 
@@ -58,6 +61,15 @@ public interface IMiningParams {
 	 * @return the number of terms to be analyzed in a single window
 	 */
 	byte getWindowSize();
+	
+	/**
+	 * Adds a pattern of POS Tags to search in the document corpus and treat as terms of interest.  
+	 * @param tags ordered sequence of {@link PosTag} objects representing the pattern
+	 */
+	void addMiningPattern(PosTag...tags);
+	
+	
+	List<PosTagPattern> getMiningPatterns();
 
 	/**
 	 * Sets thresholds value to discard noisy terms whose
@@ -77,6 +89,8 @@ public interface IMiningParams {
 	 * @return the frequency over which terms are discarded
 	 */
 	double getMaxAllowedTermFrequency();
+	
+	// TODO Patterns to observe
 	
 	/**
 	 * Sets the {@link ICorrelationFunction} to be used in computing the 
