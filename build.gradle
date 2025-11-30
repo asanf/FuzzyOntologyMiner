@@ -36,5 +36,15 @@ application {
 }
 
 tasks.named('test', Test) {
+	def testOutputDir = layout.buildDirectory.dir("test-results/test_output")
+	
+	doFirst {
+		testOutputDir.get().asFile.mkdirs()
+	}
+	
+	systemProperty 'testOutputDir', testOutputDir.get().asFile.absolutePath
+	
+	outputs.dir(testOutputDir).optional()
+	
 	useJUnitPlatform()
 }

@@ -78,52 +78,52 @@ public class FuzzyOntologyMiner {
     /* Output object */
     TermFrequencies<String> frequencies = new TermFrequencies<String>();
     
-    /* POS Tagger
-     * TODO tagger loading could be done in a singleton */
-    MaxentTagger tagger = new MaxentTagger(params.getTaggerModel());
-    
-    /* Object to extract terms of interest from sentences based on POS Tag patterns */
-    ITermsExtractor termsExtractor = new NaiveTermsExtractor();
-    termsExtractor.compile(params.getMiningPatterns());
-    int windowSize = params.getWindowSize();
-
-    /* Document corpus navigation 
-     * TODO: this navigation is not recursive */
-    File dir = params.getInputDocumentsLocation().toFile();
-    File[] listOfFiles = dir.listFiles();
-    for (File file : listOfFiles) {
-      /* Examines files only */
-      if (!file.isFile()) continue;
-
-      List<List<HasWord>> sentences;
-      try {
+    try {
+      /* POS Tagger
+       * TODO tagger loading could be done in a singleton */
+      MaxentTagger tagger = new MaxentTagger(params.getTaggerModel());
+      
+      /* Object to extract terms of interest from sentences based on POS Tag patterns */
+      ITermsExtractor termsExtractor = new NaiveTermsExtractor();
+      termsExtractor.compile(params.getMiningPatterns());
+      int windowSize = params.getWindowSize();
+  
+      /* Document corpus navigation 
+       * TODO: this navigation is not recursive */
+      File dir = params.getInputDocumentsLocation().toFile();
+      File[] listOfFiles = dir.listFiles();
+      for (File file : listOfFiles) {
+        /* Examines files only */
+        if (!file.isFile()) continue;
+  
+        List<List<HasWord>> sentences;
         // TODO generalize document read (pdf, text, word, ecc.)
         sentences = MaxentTagger.tokenizeText(new BufferedReader(new FileReader(file)));
-      } catch (FileNotFoundException e) {
-        continue;
-      }
-
-      /* For each sentence */
-      for (List<HasWord> sentence : sentences) {
-        /* prepare the sentence for processing */
-        List<TaggedWord> preparedSentence = prepareSentence(tagger.tagSentence(sentence));
-
-        /* For each text window */
-        int numWindows = preparedSentence.size() - windowSize + 1;
-        for (int windowIdx = 0; windowIdx < numWindows; windowIdx++) {
-          frequencies.augmentWindows();
-          List<TaggedWord> textWindow = preparedSentence.subList(windowIdx, windowIdx + windowSize);
-          TreeSet<String> termsInWindow = new TreeSet<>();
-          termsInWindow.addAll(termsExtractor.extract(textWindow));
-
-          for (String term : termsInWindow) {
-            frequencies.addOccurrence(term);
-            for (String otherTerm : termsInWindow.tailSet(term, false)) {
-              frequencies.addOccurrence(term, otherTerm);
+  
+        /* For each sentence */
+        for (List<HasWord> sentence : sentences) {
+          /* prepare the sentence for processing */
+          List<TaggedWord> preparedSentence = prepareSentence(tagger.tagSentence(sentence));
+  
+          /* For each text window */
+          int numWindows = preparedSentence.size() - windowSize + 1;
+          for (int windowIdx = 0; windowIdx < numWindows; windowIdx++) {
+            frequencies.augmentWindows();
+            List<TaggedWord> textWindow = preparedSentence.subList(windowIdx, windowIdx + windowSize);
+            TreeSet<String> termsInWindow = new TreeSet<>();
+            termsInWindow.addAll(termsExtractor.extract(textWindow));
+  
+            for (String term : termsInWindow) {
+              frequencies.addOccurrence(term);
+              for (String otherTerm : termsInWindow.tailSet(term, false)) {
+                frequencies.addOccurrence(term, otherTerm);
+              }
             }
           }
         }
       }
+    } catch (IOException | ClassNotFoundException exception) {
+      exception.printStackTrace();
     }
 
     /* Calculate the frequencies */
@@ -281,14 +281,15 @@ public class FuzzyOntologyMiner {
     List<TaggedWord> preparedSentence = new ArrayList<TaggedWord>();
     
     for (TaggedWord taggedWord : taggedSentence) {
-      /* Discard stop words and punctuation */
-      if (StopWords.isStopWord(taggedWord.word()) || !taggedWord.word().matches("\\w+")) continue;
       
       /* Perform word stemming and transform the word to lower-case */
       taggedWord.setWord(Morphology.lemmaStatic(taggedWord.word(), taggedWord.tag(), true));
       
-      /* Store word */
-      preparedSentence.add(taggedWord);
+      /* Discard stop words and punctuation */
+      if (!StopWords.isStopWord(taggedWord.word()) && taggedWord.word().matches("\\w+")) {
+        /* Store word */
+        preparedSentence.add(taggedWord);
+      }
     }
     
     return preparedSentence;
