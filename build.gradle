@@ -4,6 +4,7 @@ plugins {
 }
 
 group = 'fuzzyOntologyMiner'
+version = '0.2'
 
 repositories {
     mavenCentral()
@@ -15,9 +16,17 @@ java {
 }
 
 dependencies {
+		// OWL writing
 		implementation "net.sourceforge.owlapi:owlapi-distribution:3.4.4"
+		
+		// Text tokenization and pos tagging
 		implementation "edu.stanford.nlp:stanford-corenlp:1.2.0"
 		
+		// Logging
+    implementation 'org.apache.logging.log4j:log4j-api:2.22.1' 
+    implementation 'org.apache.logging.log4j:log4j-core:2.22.1'
+		
+		// Tests
 		testImplementation "org.junit.jupiter:junit-jupiter:5.7.1"
 		testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 }
