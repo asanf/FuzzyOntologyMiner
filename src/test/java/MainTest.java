@@ -28,7 +28,7 @@ class MainTest {
   static void setup() throws FileNotFoundException {
     INPUT = getResourcePath("TestData/Hackers");
     if (INPUT == null) throw new FileNotFoundException("Invalid input");
-    OUTPUT = Paths.get("output.owl");
+    OUTPUT = Paths.get("ontology.owl");
   }
 
   @Test
@@ -45,7 +45,7 @@ class MainTest {
     miningParams.addMiningPattern(PosTag.ADJECTIVE, PosTag.NOUN);
     
     /* Term frequencies extraction parameters */
-    miningParams.setTaggerModel("left3words-wsj-0-18.tagger");
+    miningParams.setTaggerModel("models/left3words-wsj-0-18.tagger");
     miningParams.setWindowSize(10);
     miningParams.setTermFrequencyThresholds(0.03, 0.8);
     
