@@ -297,7 +297,7 @@ public class FuzzyOntologyMiner {
         String sub = concepts.get(j);
         String cls = concepts.get(i);
         double spec = tax.getSpecificity(sub, cls);
-        if (spec > 0) {
+        if (!sub.equals(cls) && spec > 0) {
           OWLAnnotation fuzzyAnnotation = createFuzzyAnnotation(factory, spec);
 
           Set<OWLAnnotation> annotations = new HashSet<OWLAnnotation>();
@@ -323,5 +323,4 @@ public class FuzzyOntologyMiner {
     OWLLiteral fuzzyLiteral = f.getOWLLiteral(fuzzyowl2);
     return f.getOWLAnnotation(fuzzyTag, fuzzyLiteral);
   }
-
 }
