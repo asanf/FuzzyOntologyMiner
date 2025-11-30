@@ -2,3 +2,7 @@
 /TestData/
 /.gradle/
 /build/
+/ontology.owl
+/.classpath
+/.settings
+/.project
