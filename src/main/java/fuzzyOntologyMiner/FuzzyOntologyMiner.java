@@ -71,8 +71,7 @@ public class FuzzyOntologyMiner {
     File dir = params.getInputDocumentsLocation().toFile();
 
     TermFrequencies<String> freq = new TermFrequencies<String>();
-    // MaxentTagger tagger = new MaxentTagger("left3words-wsj-0-18.tagger");
-    MaxentTagger tagger = new MaxentTagger(params.getTaggerModel().toString());
+    MaxentTagger tagger = new MaxentTagger(params.getTaggerModel());
     File[] listOfFiles = dir.listFiles();
     ITermsExtractor termsExtractor = new NaiveTermsExtractor();
     termsExtractor.compile(params.getMiningPatterns());

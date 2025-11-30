@@ -1,0 +1,1696 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/ontologies/concepts#"
+     xml:base="http://www.semanticweb.org/ontologies/concepts"
+     xmlns:p1="#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ontologies/concepts"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- #fuzzyLabel -->
+
+    <owl:AnnotationProperty rdf:about="#fuzzyLabel"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#MIT -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#MIT">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7344986278292316&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8244261940938786&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8240679133402188&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7970610806198705&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7396386990756821&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7899778641491029&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#McCarthy -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#McCarthy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8326615193883883&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8080067796551619&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7286777421113406&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.903759349613746&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#Samson -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#Samson">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8528117410576643&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8299740324939053&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7722415296167918&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8267878215241179&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8370668502165194&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8312059996451027&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8580153711149728&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8389970432932017&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8280943809328466&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8635158739358734&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7005322485500283&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.892540600325658&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7883233602170128&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8311718451614497&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.6525742562679603&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.831014137725901&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8258123955732677&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#TMRC -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#TMRC">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7967861795625171&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8330195852843764&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.673483317413242&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.782945889868429&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8136612066505572&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8326827776453806&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7938688648192768&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7940501982655932&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8121136116471996&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8427227710355165&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#computer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#computer">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8476577669098453&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8158827669644462&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#hacker -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#hacker">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7665684451235577&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7627220446382026&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8662587914828268&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.759353565920389&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8062308878111076&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7839662424371738&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8181215770730976&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7724957864710384&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8179164903479895&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.6846627148143972&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8073604077888017&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7676794060668031&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8401554747874147&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7865179640544684&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8551054811176344&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7726116962166543&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#instruction -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#instruction">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8612216559241026&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#light -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#light">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8199608118334258&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8193910259055464&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7934699205299682&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.6912173733557716&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.784942646292784&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8254738409242045&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.844871545589523&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7950199672476747&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7870437958330617&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7490021942039514&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8665030061319886&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8195936554111263&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#machine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#machine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8789745222599743&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8351008962028093&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.6216873253324785&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8529414320563082&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.6801123302617021&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#hacker"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7594489221696605&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8023803469051807&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8022420872190097&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7885145100458179&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8299157100590413&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#Samson"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8178724745886276&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8431067737665181&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.826796501499804&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7833835988865935&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8608091409261367&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8150590093119314&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8262456942284132&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8695842193210782&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#machine"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#make -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#make">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8585099367603503&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8405401214601146&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7995297782314689&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.800817290554533&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.6886820802502736&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7995169918929301&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8235907412684929&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8290840520475931&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7642315569504557&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8189145653901585&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8728440567045185&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8001002731811944&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7658583684516326&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#people -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#people">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.6638567142832934&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7638996432180301&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.774937784368795&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7606103496063537&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7756964821017883&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#program -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#program">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#project -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#project">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7972864562686129&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8867498122287478&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.842929147292223&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7225479311071208&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8729596795748022&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8487363132458116&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8414024728092615&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8487229589091531&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8310292480419333&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8742578616213946&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8522255316931101&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8471267693126152&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8467047587843575&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8331722163254663&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#student -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#student">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7916082617542183&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7877753120045231&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7218086186420973&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#switch -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#switch">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.751468900885653&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8828130012898187&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#light"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7857549969312303&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8220332083079378&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7927285392282063&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7789768062708106&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7590243669885972&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7773984112928896&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8658233253059503&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#make"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.6264735193915496&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7606397320951508&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7895814459792772&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#project"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7814342860218662&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8363100440185651&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8218228347638595&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#switch"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#thing -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#thing">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8965793935310874&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7489688097134445&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7374094364652805&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8089325136987242&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.87894417460248&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8095105461445236&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8438684640041066&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8212904292898564&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8023809581840939&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#time -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#time">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7015234021629986&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7956565490213634&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.860572154707538&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8184265553086719&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7458510836044172&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8491180850512632&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8124680071270394&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8122091155625404&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#way -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#way">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7928109662845909&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8325383447585724&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#time"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8735991075285806&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.843251076295144&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7155954534436927&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8151167445710767&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#TMRC"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8461253358240447&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7994770964861317&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.820250921781322&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8420560680275682&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8258646091085071&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#thing"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#way"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/concepts#work -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/concepts#work">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+    </owl:Class>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7173130211386801&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#computer"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7771864462866827&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#people"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8022244044857312&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#instruction"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8608544394553865&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#McCarthy"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8163729336430174&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#student"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.8496907322147537&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#program"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;0.7674819444508988&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#MIT"/>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <p1:fuzzyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;fuzzyOwl2 fuzzyType=&quot;axiom&quot;&gt;
+	&lt;Degree value=&quot;1.0&quot;/&gt;&lt;/fuzzyOwl2&gt;</p1:fuzzyLabel>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/ontologies/concepts#work"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+    </owl:Axiom>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.4) http://owlapi.sourceforge.net -->
+

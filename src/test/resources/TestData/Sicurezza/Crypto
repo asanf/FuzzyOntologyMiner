@@ -1,0 +1,499 @@
+Blum–Goldwasser cryptosystem
+From Wikipedia, the free encyclopedia
+The Blum-Goldwasser (BG) cryptosystem is an asymmetric key encryption algorithm proposed by Manuel Blum and Shafi Goldwasser in 1984. Blum-Goldwasser is a probabilistic, semantically secure cryptosystem with a constant-size ciphertext expansion. The encryption algorithm implements an XOR-based stream cipher using the Blum Blum Shub (BBS) pseudo-random number generator to generate the keystream. Decryption is accomplished by manipulating the final state of the BBS generator using the secret key, in order to find the initial seed and reconstruct the keystream.
+
+The BG cryptosystem is semantically secure based on the assumed intractability of integer factorization; specifically, factoring a composite value  where  are large primes. BG has multiple advantages over earlier probabilistic encryption schemes such as the Goldwasser-Micali cryptosystem. First, its semantic security reduces solely to integer factorization, without requiring any additional assumptions (e.g., hardness of the quadratic residuosity problem or the RSA problem). Secondly, BG is efficient in terms of storage, inducing a constant-size ciphertext expansion regardless of message length. BG is also relatively efficient in terms of computation, and fares well even in comparison with cryptosystems such as RSA (depending on message length and exponent choices). However, BG is highly vulnerable to adaptive chosen ciphertext attacks (see below).
+
+Because encryption is performed using a probabilistic algorithm, a given plaintext may produce very different ciphertexts each time it is encrypted. This has significant advantages, as it prevents an adversary from recognizing intercepted messages by comparing them to a dictionary of known ciphertexts.
+
+Note that the following description is a draft, and may contain errors!
+
+Blum-Goldwasser consists of three algorithms: a probabilistic key generation algorithm which produces a public and a private key, a probabilistic encryption algorithm, and a deterministic decryption algorithm.
+
+Key generation
+
+To allow for decryption, the modulus used in Blum-Goldwasser encryption should be a Blum integer. This value is generated in the same manner as an RSA modulus, except that the prime factors  must be congruent to 3 mod 4. (See RSA, key generation for details.)
+
+Alice generates two large prime numbers  and  such that , randomly and independently of each other, where  mod .
+Alice computes .
+The public key is . The secret key is the factorization .
+
+Message encryption
+
+Suppose Bob wishes to send a message m to Alice:
+
+Bob first encodes  as a string of  bits .
+Bob selects a random element , where , and computes .
+Bob uses the BBS pseudo-random number generator to generate  random bits  (the keystream), as follows:
+For  to :
+Set  equal to the least-significant bit of .
+Increment .
+Compute .
+Compute the ciphertext by XORing the plaintext bits with the keystream: .
+Bob sends the ciphertext .
+
+To improve performance, the BBS generator can securely output up to  of the least-significant bits of  during each round. See Blum Blum Shub for details.
+
+Message decryption
+
+Alice receives . She can recover  using the following procedure:
+
+Using the prime factorization , Alice computes  and .
+Compute the initial seed 
+From , recompute the bit-vector  using the BBS generator, as in the encryption algorithm.
+Compute the plaintext by XORing the keystream with the ciphertext: .
+Alice recovers the plaintext .
+
+Security and efficiency
+
+The Blum-Goldwasser scheme is semantically-secure based on the hardness of predicting the keystream bits given only the final BBS state  and the public key . However, ciphertexts of the form  are vulnerable to an adaptive chosen ciphertext attack in which the adversary requests the decryption  of a chosen ciphertext . The decryption  of the original ciphertext can be computed as .
+
+Depending on plaintext size, BG may be more or less computationally expensive than RSA. Because most RSA deployments use a fixed encryption exponent optimized to minimize encryption time, RSA encryption will typically outperform BG for all but the shortest messages. However, as the RSA decryption exponent is randomly distributed, modular exponentiation may require a comparable number of squarings/multiplications to BG decryption for a ciphertext of the same length. BG has the advantage of scaling more efficiently to longer ciphertexts, where RSA requires multiple separate encryptions. In these cases, BG may be significantly more efficient.
+
+References
+
+M. Blum, S. Goldwasser, "An Efficient Probabilistic Public Key Encryption Scheme which Hides All Partial Information", Proceedings of Advances in Cryptology - CRYPTO '84, pp. 289–299, Springer Verlag, 1985.
+Menezes, Alfred; van Oorschot, Paul C.; and Vanstone, Scott A. Handbook of Applied Cryptography. CRC Press, October 1996. ISBN 0-8493-8523-7
+External links
+
+Menezes, Oorschot, Vanstone, Scott: Handbook of Applied Cryptography (free PDF downloads), see Chapter 8
+Retrieved from "http://en.wikipedia.org/w/index.php?title=Blum–Goldwasser_cryptosystem&oldid=551287109"
+Categories: Public-key encryption schemes
+
+
+
+
+
+
+
+
+Boomerang attack
+From Wikipedia, the free encyclopedia
+
+Boomerang attack
+In cryptography, the boomerang attack is a method for the cryptanalysis of block ciphers based on differential cryptanalysis. The attack was published in 1999 by David Wagner, who used it to break the COCONUT98 cipher.
+
+The boomerang attack has allowed new avenues of attack for many ciphers previously deemed safe from differential cryptanalysis.
+
+Refinements on the boomerang attack have been published: the amplified boomerang attack, then the rectangle attack.
+
+
+The boomerang attack is based on differential cryptanalysis. In differential cryptanalysis, an attacker exploits how differences in the input to a cipher (the plaintext) can affect the resultant difference at the output (the ciphertext). A high-probability "differential" (that is, an input difference that will produce a likely output difference) is needed that covers all, or nearly all, of the cipher. The boomerang attack allows differentials to be used which cover only part of the cipher.
+
+The attack attempts to generate a so-called "quartet" structure at a point halfway through the cipher. For this purpose, say that the encryption action, E, of the cipher can be split into two consecutive stages, E0 and E1, so that E(M) = E1(E0(M)), where M is some plaintext message. Suppose we have two differentials for the two stages; say,
+
+
+for E0, and
+
+ for E1-1 (the decryption action of E1).
+The basic attack proceeds as follows:
+
+Choose a random plaintext  and calculate .
+Request the encryptions of  and  to obtain  and 
+Calculate  and 
+Request the decryptions of  and  to obtain  and 
+Compare  and ; when the differentials hold, .
+Application to specific ciphers
+
+One attack on KASUMI, a block cipher used in 3GPP, is a related-key rectangle attack which breaks the full eight rounds of the cipher faster than exhaustive search (Biham et al., 2005). The attack requires 254.6 chosen plaintexts, each of which has been encrypted under one of four related keys, and has a time complexity equivalent to 276.1 KASUMI encryptions.
+
+
+In cryptography, a stream cipher is a symmetric key cipher where plaintext digits are combined with a pseudorandom cipher digit stream (keystream). In a stream cipher each plaintext digit is encrypted one at a time with the corresponding digit of the keystream, to give a digit of the ciphertext stream. An alternative name is a state cipher, as the encryption of each digit is dependent on the current state. In practice, a digit is typically a bit and the combining operation an exclusive-or (xor).
+
+The pseudorandom keystream is typically generated serially from a random seed value using digital shift registers. The seed value serves as the cryptographic key for decrypting the ciphertext stream.
+
+Stream ciphers represent a different approach to symmetric encryption from block ciphers. Block ciphers operate on large blocks of digits with a fixed, unvarying transformation. This distinction is not always clear-cut: in some modes of operation, a block cipher primitive is used in such a way that it acts effectively as a stream cipher. Stream ciphers typically execute at a higher speed than block ciphers and have lower hardware complexity. However, stream ciphers can be susceptible to serious security problems if used incorrectly (see stream cipher attacks); in particular, the same starting state (seed) must never be used twice.
+
+
+
+Stream ciphers can be viewed as approximating the action of a proven unbreakable cipher, the one-time pad (OTP), sometimes known as the Vernam cipher. A one-time pad uses a keystream of completely random digits. The keystream is combined with the plaintext digits one at a time to form the ciphertext. This system was proved to be secure by Claude E. Shannon in 1949. However, the keystream must be (at least) the same length as the plaintext and be generated completely at random. This makes the system very cumbersome to implement in practice, and as a result the one-time pad has not been widely used, except for the most critical applications.
+
+A stream cipher makes use of a much smaller and more convenient key such as 128 bits. Based on this key, it generates a pseudorandom keystream which can be combined with the plaintext digits in a similar fashion to the one-time pad. However, this comes at a cost. The keystream is now pseudorandom and so is not truly random. The proof of security associated with the one-time pad no longer holds. It is quite possible for a stream cipher to be completely insecure.
+
+Types of stream ciphers
+
+A stream cipher generates successive elements of the keystream based on an internal state. This state is updated in essentially two ways: if the state changes independently of the plaintext or ciphertext messages, the cipher is classified as a synchronous stream cipher. By contrast, self-synchronising stream ciphers update their state based on previous ciphertext digits.
+
+Synchronous stream ciphers
+
+In a synchronous stream cipher a stream of pseudo-random digits is generated independently of the plaintext and ciphertext messages, and then combined with the plaintext (to encrypt) or the ciphertext (to decrypt). In the most common form, binary digits are used (bits), and the keystream is combined with the plaintext using the exclusive or operation (XOR). This is termed a binary additive stream cipher.
+
+In a synchronous stream cipher, the sender and receiver must be exactly in step for decryption to be successful. If digits are added or removed from the message during transmission, synchronisation is lost. To restore synchronisation, various offsets can be tried systematically to obtain the correct decryption. Another approach is to tag the ciphertext with markers at regular points in the output.
+
+If, however, a digit is corrupted in transmission, rather than added or lost, only a single digit in the plaintext is affected and the error does not propagate to other parts of the message. This property is useful when the transmission error rate is high; however, it makes it less likely the error would be detected without further mechanisms. Moreover, because of this property, synchronous stream ciphers are very susceptible to active attacks: if an attacker can change a digit in the ciphertext, he might be able to make predictable changes to the corresponding plaintext bit; for example, flipping a bit in the ciphertext causes the same bit to be flipped in the plaintext.
+
+Self-synchronizing stream ciphers
+
+Another approach uses several of the previous N ciphertext digits to compute the keystream. Such schemes are known as self-synchronizing stream ciphers, asynchronous stream ciphers or ciphertext autokey (CTAK). The idea of self-synchronization was patented in 1946, and has the advantage that the receiver will automatically synchronise with the keystream generator after receiving N ciphertext digits, making it easier to recover if digits are dropped or added to the message stream. Single-digit errors are limited in their effect, affecting only up to N plaintext digits.
+
+An example of a self-synchronising stream cipher is a block cipher in cipher feedback (CFB) mode.
+
+Linear feedback shift register-based stream ciphers
+
+Binary stream ciphers are often constructed using linear feedback shift registers (LFSRs) because they can be easily implemented in hardware and can be readily analysed mathematically. The use of LFSRs on their own, however, is insufficient to provide good security. Various schemes have been proposed to increase the security of LFSRs.
+
+Non-linear combining functions
+
+
+One approach is to use n LFSRs in parallel, their outputs combined using an n-input binary Boolean function (F).
+Because LFSRs are inherently linear, one technique for removing the linearity is to feed the outputs of several parallel LFSRs into a non-linear Boolean function to form a combination generator. Various properties of such a combining function are critical for ensuring the security of the resultant scheme, for example, in order to avoid correlation attacks.
+
+Clock-controlled generators
+
+Normally LFSRs are stepped regularly. One approach to introducing non-linearity is to have the LFSR clocked irregularly, controlled by the output of a second LFSR. Such generators include the stop-and-go generator, the alternating step generator and the shrinking generator.
+
+An alternating step generator comprises three linear feedback shift registers, which we will call LFSR0, LFSR1 and LFSR2 for convenience. The output of one of the registers decides which of the other two is to be used; for instance if LFSR2 outputs a 0, LFSR0 is clocked, and if it outputs a 1, LFSR1 is clocked instead. The output is the exclusive OR of the last bit produced by LFSR0 and LFSR1. The initial state of the three LFSRs is the key.
+
+The stop-and-go generator (Beth and Piper, 1984) consists of two LFSRs. One LFSR is clocked if the output of a second is a "1", otherwise it repeats its previous output. This output is then (in some versions) combined with the output of a third LFSR clocked at a regular rate.
+
+The shrinking generator takes a different approach. Two LFSRs are used, both clocked regularly. If the output of the first LFSR is "1", the output of the second LFSR becomes the output of the generator. If the first LFSR outputs "0", however, the output of the second is discarded, and no bit is output by the generator. This mechanism suffers from timing attacks on the second generator, since the speed of the output is variable in a manner that depends on the second generator's state. This can be alleviated by buffering the output.
+
+Filter generator
+
+Another approach to improving the security of an LFSR is to pass the entire state of a single LFSR into a non-linear filtering function.
+
+Other designs
+
+
+RC4 is one of the most widely used stream cipher designs.
+Instead of a linear driving device, one may use a nonlinear update function. For example, Klimov and Shamir proposed triangular functions (T-Functions) with a single cycle on n bit words.
+
+Security
+
+Main article: Stream cipher attack
+For a stream cipher to be secure, its keystream must have a large period and it must be impossible to recover the cipher's key or internal state from the keystream. Cryptographers also demand that the keystream be free of even subtle biases that would let attackers distinguish a stream from random noise, and free of detectable relationships between keystreams that correspond to related keys or related cryptographic nonces. This should be true for all keys (there should be no weak keys), and true even if the attacker can know or choose some plaintext or ciphertext.
+
+As with other attacks in cryptography, stream cipher attacks can be certificational, meaning they are not necessarily practical ways to break the cipher but indicate that the cipher might have other weaknesses.
+
+Securely using a secure synchronous stream cipher requires that one never reuse the same keystream twice; that generally means a different nonce or key must be supplied to each invocation of the cipher. Application designers must also recognize that most stream ciphers don't provide authenticity, only privacy: encrypted messages may still have been modified in transit.
+
+Short periods for stream ciphers have been a practical concern. For example, 64-bit block ciphers like DES can be used to generate a keystream in output feedback (OFB) mode. However, when not using full feedback, the resulting stream has a period of around 232 blocks on average; for many applications, this period is far too low. For example, if encryption is being performed at a rate of 8 megabytes per second, a stream of period 232 blocks will repeat after about a half an hour.
+
+Some applications using the stream cipher RC4 are attackable because of weaknesses in RC4's key setup routine; new applications should either avoid RC4 or make sure all keys are unique and ideally unrelated (such as generated by a well-seeded CSPRNG or a cryptographic hash function) and that the first bytes of the keystream are discarded.
+
+Usage
+
+Stream ciphers are often used for their speed and simplicity of implementation in hardware, and in applications where plaintext comes in quantities of unknowable length like a secure wireless connection. If a block cipher (not operating in a stream cipher mode) were to be used in this type of application, the designer would need to choose either transmission efficiency or implementation complexity, since block ciphers cannot directly work on blocks shorter than their block size. For example, if a 128-bit block cipher received separate 32-bit bursts of plaintext, three quarters of the data transmitted would be padding. Block ciphers must be used in ciphertext stealing or residual block termination mode to avoid padding, while stream ciphers eliminate this issue by naturally operating on the smallest unit that can be transmitted (usually bytes).
+
+Another advantage of stream ciphers in military cryptography is that the cipher stream can be generated in a separate box that is subject to strict security measures and fed to other devices such as a radio set, which will perform the xor operation as part of their function. The latter device can then be designed and used in less stringent environments.
+
+RC4 is the most widely used stream cipher in software; others include: A5/1, A5/2, Chameleon, FISH, Helix, ISAAC, MUGI, Panama, Phelix, Pike, SEAL, SOBER, SOBER-128 and WAKE.
+
+Cryptography (or cryptology; from Greek κρυπτός, "hidden, secret"; and γράφειν, graphein, "writing", or -λογία, -logia, "study", respectively)[1] is the practice and study of techniques for secure communication in the presence of third parties (called adversaries).[2] More generally, it is about constructing and analyzing protocols that overcome the influence of adversaries[3] and which are related to various aspects in information security such as data confidentiality, data integrity, authentication, and non-repudiation.[4] Modern cryptography intersects the disciplines of mathematics, computer science, and electrical engineering. Applications of cryptography include ATM cards, computer passwords, and electronic commerce.
+
+Cryptography prior to the modern age was effectively synonymous with encryption, the conversion of information from a readable state to apparent nonsense. The originator of an encrypted message shared the decoding technique needed to recover the original information only with intended recipients, thereby precluding unwanted persons to do the same. Since World War I and the advent of the computer, the methods used to carry out cryptology have become increasingly complex and its application more widespread.
+
+Modern cryptography is heavily based on mathematical theory and computer science practice; cryptographic algorithms are designed around computational hardness assumptions, making such algorithms hard to break in practice by any adversary. It is theoretically possible to break such a system but it is infeasible to do so by any known practical means. These schemes are therefore termed computationally secure; theoretical advances, e.g., improvements in integer factorization algorithms, and faster computing technology require these solutions to be continually adapted. There exist information-theoretically secure schemes that provably cannot be broken even with unlimited computing power—an example is the one-time pad—but these schemes are more difficult to implement than the best theoretically breakable but computationally secure mechanisms.
+
+Cryptology-related technology has raised a number of legal issues. In the United Kingdom, additions to the Regulation of Investigatory Powers Act 2000 require a suspected criminal to hand over his or her decryption key if asked by law enforcement. Otherwise the user will face a criminal charge.[5] The Electronic Frontier Foundation (EFF) is involved in a case in the Supreme Court of the United States, which may determine whether requiring suspected criminals to provide their decryption keys to law enforcement is unconstitutional. The EFF is arguing that this is a violation of the right of not being forced to incriminate oneself, as given in the fifth amendment.[6]
+
+
+
+Until modern times cryptography referred almost exclusively to encryption, which is the process of converting ordinary information (called plaintext) into unintelligible text (called ciphertext).[7] Decryption is the reverse, in other words, moving from the unintelligible ciphertext back to plaintext. A cipher (or cypher) is a pair of algorithms that create the encryption and the reversing decryption. The detailed operation of a cipher is controlled both by the algorithm and in each instance by a "key". This is a secret (ideally known only to the communicants), usually a short string of characters, which is needed to decrypt the ciphertext. A "cryptosystem" is the ordered list of elements of finite possible plaintexts, finite possible cyphertexts, finite possible keys, and the encryption and decryption algorithms which correspond to each key. Keys are important, as ciphers without variable keys can be trivially broken with only the knowledge of the cipher used and are therefore useless (or even counter-productive) for most purposes. Historically, ciphers were often used directly for encryption or decryption without additional procedures such as authentication or integrity checks.
+
+In colloquial use, the term "code" is often used to mean any method of encryption or concealment of meaning. However, in cryptography, code has a more specific meaning. It means the replacement of a unit of plaintext (i.e., a meaningful word or phrase) with a code word (for example, wallaby replaces attack at dawn). Codes are no longer used in serious cryptography—except incidentally for such things as unit designations (e.g., Bronco Flight or Operation Overlord)—since properly chosen ciphers are both more practical and more secure than even the best codes and also are better adapted to computers.
+
+Cryptanalysis is the term used for the study of methods for obtaining the meaning of encrypted information without access to the key normally required to do so; i.e., it is the study of how to crack encryption algorithms or their implementations.
+
+Some use the terms cryptography and cryptology interchangeably in English, while others (including US military practice generally) use cryptography to refer specifically to the use and practice of cryptographic techniques and cryptology to refer to the combined study of cryptography and cryptanalysis.[8][9] English is more flexible than several other languages in which cryptology (done by cryptologists) is always used in the second sense above. In the English Wikipedia the general term used for the entire field is cryptography (done by cryptographers).
+
+The study of characteristics of languages which have some application in cryptography (or cryptology), i.e. frequency data, letter combinations, universal patterns, etc., is called cryptolinguistics.
+
+History of cryptography and cryptanalysis
+
+Main article: History of cryptography
+Before the modern era, cryptography was concerned solely with message confidentiality (i.e., encryption)—conversion of messages from a comprehensible form into an incomprehensible one and back again at the other end, rendering it unreadable by interceptors or eavesdroppers without secret knowledge (namely the key needed for decryption of that message). Encryption was used to (attempt to) ensure secrecy in communications, such as those of spies, military leaders, and diplomats. In recent decades, the field has expanded beyond confidentiality concerns to include techniques for message integrity checking, sender/receiver identity authentication, digital signatures, interactive proofs and secure computation, among others.
+
+Classic cryptography
+
+
+Reconstructed ancient Greek scytale (rhymes with "Italy"), an early cipher device
+The earliest forms of secret writing required little more than local pen and paper analogs, as most people could not read. More literacy, or literate opponents, required actual cryptography. The main classical cipher types are transposition ciphers, which rearrange the order of letters in a message (e.g., 'hello world' becomes 'ehlol owrdl' in a trivially simple rearrangement scheme), and substitution ciphers, which systematically replace letters or groups of letters with other letters or groups of letters (e.g., 'fly at once' becomes 'gmz bu podf' by replacing each letter with the one following it in the Latin alphabet). Simple versions of either have never offered much confidentiality from enterprising opponents. An early substitution cipher was the Caesar cipher, in which each letter in the plaintext was replaced by a letter some fixed number of positions further down the alphabet. Suetonius reports that Julius Caesar used it with a shift of three to communicate with his generals. Atbash is an example of an early Hebrew cipher. The earliest known use of cryptography is some carved ciphertext on stone in Egypt (ca 1900 BCE), but this may have been done for the amusement of literate observers rather than as a way of concealing information. Cryptography is recommended in the Kama Sutra (ca 400 BCE) as a way for lovers to communicate without inconvenient discovery.[10]
+
+The Greeks of Classical times are said to have known of ciphers (e.g., the scytale transposition cipher claimed to have been used by the Spartan military).[11] Steganography (i.e., hiding even the existence of a message so as to keep it confidential) was also first developed in ancient times. An early example, from Herodotus, concealed a message—a tattoo on a slave's shaved head—under the regrown hair.[7] Another Greek method was developed by Polybius (now called the "Polybius Square").[12] More modern examples of steganography include the use of invisible ink, microdots, and digital watermarks to conceal information.
+
+Ciphertexts produced by a classical cipher (and some modern ciphers) always reveal statistical information about the plaintext, which can often be used to break them. After the discovery of frequency analysis perhaps by the Arab mathematician and polymath Al-Kindi (also known as Alkindus) in the 9th century,[citation needed] nearly all such ciphers became more or less readily breakable by any informed attacker. Such classical ciphers still enjoy popularity today, though mostly as puzzles (see cryptogram). Al-Kindi wrote a book on cryptography entitled Risalah fi Istikhraj al-Mu'amma (Manuscript for the Deciphering Cryptographic Messages), which described the first cryptanalysis techniques.[13][14]
+
+
+16th-century book-shaped French cipher machine, with arms of Henri II of France
+
+Enciphered letter from Gabriel de Luetz d'Aramon, French Ambassador to the Ottoman Empire, after 1546, with partial decipherment
+Essentially all ciphers remained vulnerable to cryptanalysis using the frequency analysis technique until the development of the polyalphabetic cipher, most clearly by Leon Battista Alberti around the year 1467, though there is some indication that it was already known to Al-Kindi.[14] Alberti's innovation was to use different ciphers (i.e., substitution alphabets) for various parts of a message (perhaps for each successive plaintext letter at the limit). He also invented what was probably the first automatic cipher device, a wheel which implemented a partial realization of his invention. In the polyalphabetic Vigenère cipher, encryption uses a key word, which controls letter substitution depending on which letter of the key word is used. In the mid-19th century Charles Babbage showed that the Vigenère cipher was vulnerable to Kasiski examination, but this was first published about ten years later by Friedrich Kasiski.[15]
+
+Although frequency analysis is a powerful and general technique against many ciphers, encryption has still often been effective in practice, as many a would-be cryptanalyst was unaware of the technique. Breaking a message without using frequency analysis essentially required knowledge of the cipher used and perhaps of the key involved, thus making espionage, bribery, burglary, defection, etc., more attractive approaches to the cryptanalytically uninformed. It was finally explicitly recognized in the 19th century that secrecy of a cipher's algorithm is not a sensible nor practical safeguard of message security; in fact, it was further realized that any adequate cryptographic scheme (including ciphers) should remain secure even if the adversary fully understands the cipher algorithm itself. Security of the key used should alone be sufficient for a good cipher to maintain confidentiality under an attack. This fundamental principle was first explicitly stated in 1883 by Auguste Kerckhoffs and is generally called Kerckhoffs's Principle; alternatively and more bluntly, it was restated by Claude Shannon, the inventor of information theory and the fundamentals of theoretical cryptography, as Shannon's Maxim—'the enemy knows the system'.
+
+Different physical devices and aids have been used to assist with ciphers. One of the earliest may have been the scytale of ancient Greece, a rod supposedly used by the Spartans as an aid for a transposition cipher (see image above). In medieval times, other aids were invented such as the cipher grille, which was also used for a kind of steganography. With the invention of polyalphabetic ciphers came more sophisticated aids such as Alberti's own cipher disk, Johannes Trithemius' tabula recta scheme, and Thomas Jefferson's multi-cylinder (not publicly known, and reinvented independently by Bazeries around 1900). Many mechanical encryption/decryption devices were invented early in the 20th century, and several patented, among them rotor machines—famously including the Enigma machine used by the German government and military from the late 1920s and during World War II.[16] The ciphers implemented by better quality examples of these machine designs brought about a substantial increase in cryptanalytic difficulty after WWI.[17]
+
+Computer era
+
+Cryptanalysis of the new mechanical devices proved to be both difficult and laborious. In the United Kingdom, cryptanalytic efforts at Bletchley Park during WWII spurred the development of more efficient means for carrying out repetitious tasks. This culminated in the development of the Colossus, the world's first fully electronic, digital, programmable computer, which assisted in the decryption of ciphers generated by the German Army's Lorenz SZ40/42 machine.
+
+Just as the development of digital computers and electronics helped in cryptanalysis, it made possible much more complex ciphers. Furthermore, computers allowed for the encryption of any kind of data representable in any binary format, unlike classical ciphers which only encrypted written language texts; this was new and significant. Computer use has thus supplanted linguistic cryptography, both for cipher design and cryptanalysis. Many computer ciphers can be characterized by their operation on binary bit sequences (sometimes in groups or blocks), unlike classical and mechanical schemes, which generally manipulate traditional characters (i.e., letters and digits) directly. However, computers have also assisted cryptanalysis, which has compensated to some extent for increased cipher complexity. Nonetheless, good modern ciphers have stayed ahead of cryptanalysis; it is typically the case that use of a quality cipher is very efficient (i.e., fast and requiring few resources, such as memory or CPU capability), while breaking it requires an effort many orders of magnitude larger, and vastly larger than that required for any classical cipher, making cryptanalysis so inefficient and impractical as to be effectively impossible.
+
+
+Credit card with smart-card capabilities. The 3-by-5-mm chip embedded in the card is shown, enlarged. Smart cards combine low cost and portability with the power to compute cryptographic algorithms.
+Extensive open academic research into cryptography is relatively recent; it began only in the mid-1970s. In recent times, IBM personnel designed the algorithm that became the Federal (i.e., US) Data Encryption Standard; Whitfield Diffie and Martin Hellman published their key agreement algorithm;[18] and the RSA algorithm was published in Martin Gardner's Scientific American column. Since then, cryptography has become a widely used tool in communications, computer networks, and computer security generally. Some modern cryptographic techniques can only keep their keys secret if certain mathematical problems are intractable, such as the integer factorization or the discrete logarithm problems, so there are deep connections with abstract mathematics. There are no absolute proofs that a cryptographic technique is secure (but see one-time pad); at best, there are proofs that some techniques are secure if some computational problem is difficult to solve, or this or that assumption about implementation or practical use is met.
+
+As well as being aware of cryptographic history, cryptographic algorithm and system designers must also sensibly consider probable future developments while working on their designs. For instance, continuous improvements in computer processing power have increased the scope of brute-force attacks, thus when specifying key lengths, the required key lengths are similarly advancing.[19] The potential effects of quantum computing are already being considered by some cryptographic system designers; the announced imminence of small implementations of these machines may be making the need for this preemptive caution rather more than merely speculative.[4]
+
+Essentially, prior to the early 20th century, cryptography was chiefly concerned with linguistic and lexicographic patterns. Since then the emphasis has shifted, and cryptography now makes extensive use of mathematics, including aspects of information theory, computational complexity, statistics, combinatorics, abstract algebra, number theory, and finite mathematics generally. Cryptography is, also, a branch of engineering, but an unusual one as it deals with active, intelligent, and malevolent opposition (see cryptographic engineering and security engineering); other kinds of engineering (e.g., civil or chemical engineering) need deal only with neutral natural forces. There is also active research examining the relationship between cryptographic problems and quantum physics (see quantum cryptography and quantum computer).
+
+Modern cryptography
+
+The modern field of cryptography can be divided into several areas of study. The chief ones are discussed here; see Topics in Cryptography for more.
+
+Symmetric-key cryptography
+
+Main article: Symmetric-key algorithm
+Symmetric-key cryptography refers to encryption methods in which both the sender and receiver share the same key (or, less commonly, in which their keys are different, but related in an easily computable way). This was the only kind of encryption publicly known until June 1976.[18]
+
+
+One round (out of 8.5) of the patented IDEA cipher, used in some versions of PGP for high-speed encryption of, for instance, e-mail
+Symmetric key ciphers are implemented as either block ciphers or stream ciphers. A block cipher enciphers input in blocks of plaintext as opposed to individual characters, the input form used by a stream cipher.
+
+The Data Encryption Standard (DES) and the Advanced Encryption Standard (AES) are block cipher designs which have been designated cryptography standards by the US government (though DES's designation was finally withdrawn after the AES was adopted).[20] Despite its deprecation as an official standard, DES (especially its still-approved and much more secure triple-DES variant) remains quite popular; it is used across a wide range of applications, from ATM encryption[21] to e-mail privacy[22] and secure remote access.[23] Many other block ciphers have been designed and released, with considerable variation in quality. Many have been thoroughly broken, such as FEAL.[4][24]
+
+Stream ciphers, in contrast to the 'block' type, create an arbitrarily long stream of key material, which is combined with the plaintext bit-by-bit or character-by-character, somewhat like the one-time pad. In a stream cipher, the output stream is created based on a hidden internal state which changes as the cipher operates. That internal state is initially set up using the secret key material. RC4 is a widely used stream cipher; see Category:Stream ciphers.[4] Block ciphers can be used as stream ciphers; see Block cipher modes of operation.
+
+Cryptographic hash functions are a third type of cryptographic algorithm. They take a message of any length as input, and output a short, fixed length hash which can be used in (for example) a digital signature. For good hash functions, an attacker cannot find two messages that produce the same hash. MD4 is a long-used hash function which is now broken; MD5, a strengthened variant of MD4, is also widely used but broken in practice. The U.S. National Security Agency developed the Secure Hash Algorithm series of MD5-like hash functions: SHA-0 was a flawed algorithm that the agency withdrew; SHA-1 is widely deployed and more secure than MD5, but cryptanalysts have identified attacks against it; the SHA-2 family improves on SHA-1, but it isn't yet widely deployed, and the U.S. standards authority thought it "prudent" from a security perspective to develop a new standard to "significantly improve the robustness of NIST's overall hash algorithm toolkit."[25] Thus, a hash function design competition was meant to select a new U.S. national standard, to be called SHA-3, by 2012. The competition ended on October 2, 2012 when the NIST announced that Keccak would be the new SHA-3 hash algorithm.[26]
+
+Message authentication codes (MACs) are much like cryptographic hash functions, except that a secret key can be used to authenticate the hash value[4] upon receipt.
+
+Public-key cryptography
+
+Main article: Public-key cryptography
+Symmetric-key cryptosystems use the same key for encryption and decryption of a message, though a message or group of messages may have a different key than others. A significant disadvantage of symmetric ciphers is the key management necessary to use them securely. Each distinct pair of communicating parties must, ideally, share a different key, and perhaps each ciphertext exchanged as well. The number of keys required increases as the square of the number of network members, which very quickly requires complex key management schemes to keep them all straight and secret. The difficulty of securely establishing a secret key between two communicating parties, when a secure channel does not already exist between them, also presents a chicken-and-egg problem which is a considerable practical obstacle for cryptography users in the real world.
+
+
+Whitfield Diffie and Martin Hellman, authors of the first published paper on public-key cryptography
+In a groundbreaking 1976 paper, Whitfield Diffie and Martin Hellman proposed the notion of public-key (also, more generally, called asymmetric key) cryptography in which two different but mathematically related keys are used—a public key and a private key.[27] A public key system is so constructed that calculation of one key (the 'private key') is computationally infeasible from the other (the 'public key'), even though they are necessarily related. Instead, both keys are generated secretly, as an interrelated pair.[28] The historian David Kahn described public-key cryptography as "the most revolutionary new concept in the field since polyalphabetic substitution emerged in the Renaissance".[29]
+
+In public-key cryptosystems, the public key may be freely distributed, while its paired private key must remain secret. In a public-key encryption system, the public key is used for encryption, while the private or secret key is used for decryption. While Diffie and Hellman could not find such a system, they showed that public-key cryptography was indeed possible by presenting the Diffie–Hellman key exchange protocol, a solution that is now widely used in secure communications to allow two parties to secretly agree on a shared encryption key.[18]
+
+Diffie and Hellman's publication sparked widespread academic efforts in finding a practical public-key encryption system. This race was finally won in 1978 by Ronald Rivest, Adi Shamir, and Len Adleman, whose solution has since become known as the RSA algorithm.[30]
+
+The Diffie–Hellman and RSA algorithms, in addition to being the first publicly known examples of high quality public-key algorithms, have been among the most widely used. Others include the Cramer–Shoup cryptosystem, ElGamal encryption, and various elliptic curve techniques. See Category:Asymmetric-key cryptosystems.
+
+To much surprise, a document published in 1997 by the Government Communications Headquarters (GCHQ), a British intelligence organization, revealed that cryptographers at GCHQ had anticipated several academic developments.[31] Reportedly, around 1970, James H. Ellis had conceived the principles of asymmetric key cryptography. In 1973, Clifford Cocks invented a solution that essentially resembles the RSA algorithm.[31][32] And in 1974, Malcolm J. Williamson is claimed to have developed the Diffie-Hellman key exchange.[33]
+
+
+Padlock icon from the Firefox Web browser, meant to indicate a page has been sent in SSL or TLS-encrypted protected form. However, seeing an icon results when code is intended to render it. Malicious code can provide the icon even when the connection is not actually being protected by SSL or TLS.[citation needed]
+Public-key cryptography can also be used for implementing digital signature schemes. A digital signature is reminiscent of an ordinary signature; they both have the characteristic of being easy for a user to produce, but difficult for anyone else to forge. Digital signatures can also be permanently tied to the content of the message being signed; they cannot then be 'moved' from one document to another, for any attempt will be detectable. In digital signature schemes, there are two algorithms: one for signing, in which a secret key is used to process the message (or a hash of the message, or both), and one for verification, in which the matching public key is used with the message to check the validity of the signature. RSA and DSA are two of the most popular digital signature schemes. Digital signatures are central to the operation of public key infrastructures and many network security schemes (e.g., SSL/TLS, many VPNs, etc.).[24]
+
+Public-key algorithms are most often based on the computational complexity of "hard" problems, often from number theory. For example, the hardness of RSA is related to the integer factorization problem, while Diffie–Hellman and DSA are related to the discrete logarithm problem. More recently, elliptic curve cryptography has developed in which security is based on number theoretic problems involving elliptic curves. Because of the difficulty of the underlying problems, most public-key algorithms involve operations such as modular multiplication and exponentiation, which are much more computationally expensive than the techniques used in most block ciphers, especially with typical key sizes. As a result, public-key cryptosystems are commonly hybrid cryptosystems, in which a fast high-quality symmetric-key encryption algorithm is used for the message itself, while the relevant symmetric key is sent with the message, but encrypted using a public-key algorithm. Similarly, hybrid signature schemes are often used, in which a cryptographic hash function is computed, and only the resulting hash is digitally signed.[4]
+
+Cryptanalysis
+
+Main article: Cryptanalysis
+
+Variants of the Enigma machine, used by Germany's military and civil authorities from the late 1920s through World War II, implemented a complex electro-mechanical polyalphabetic cipher. Breaking and reading of the Enigma cipher at Poland's Cipher Bureau, for 7 years before the war, and subsequent decryption at Bletchley Park, was important to Allied victory.[7]
+The goal of cryptanalysis is to find some weakness or insecurity in a cryptographic scheme, thus permitting its subversion or evasion.
+
+It is a common misconception that every encryption method can be broken. In connection with his WWII work at Bell Labs, Claude Shannon proved that the one-time pad cipher is unbreakable, provided the key material is truly random, never reused, kept secret from all possible attackers, and of equal or greater length than the message.[34] Most ciphers, apart from the one-time pad, can be broken with enough computational effort by brute force attack, but the amount of effort needed may be exponentially dependent on the key size, as compared to the effort needed to make use of the cipher. In such cases, effective security could be achieved if it is proven that the effort required (i.e., "work factor", in Shannon's terms) is beyond the ability of any adversary. This means it must be shown that no efficient method (as opposed to the time-consuming brute force method) can be found to break the cipher. Since no such proof has been found to date, the one-time-pad remains the only theoretically unbreakable cipher.
+
+There are a wide variety of cryptanalytic attacks, and they can be classified in any of several ways. A common distinction turns on what an attacker knows and what capabilities are available. In a ciphertext-only attack, the cryptanalyst has access only to the ciphertext (good modern cryptosystems are usually effectively immune to ciphertext-only attacks). In a known-plaintext attack, the cryptanalyst has access to a ciphertext and its corresponding plaintext (or to many such pairs). In a chosen-plaintext attack, the cryptanalyst may choose a plaintext and learn its corresponding ciphertext (perhaps many times); an example is gardening, used by the British during WWII. Finally, in a chosen-ciphertext attack, the cryptanalyst may be able to choose ciphertexts and learn their corresponding plaintexts.[4] Also important, often overwhelmingly so, are mistakes (generally in the design or use of one of the protocols involved; see Cryptanalysis of the Enigma for some historical examples of this).
+
+
+Poznań monument (center) to Polish cryptologists whose breaking of Germany's Enigma machine ciphers, beginning in 1932, altered the course of World War II
+Cryptanalysis of symmetric-key ciphers typically involves looking for attacks against the block ciphers or stream ciphers that are more efficient than any attack that could be against a perfect cipher. For example, a simple brute force attack against DES requires one known plaintext and 255 decryptions, trying approximately half of the possible keys, to reach a point at which chances are better than even that the key sought will have been found. But this may not be enough assurance; a linear cryptanalysis attack against DES requires 243 known plaintexts and approximately 243 DES operations.[35] This is a considerable improvement on brute force attacks.
+
+Public-key algorithms are based on the computational difficulty of various problems. The most famous of these is integer factorization (e.g., the RSA algorithm is based on a problem related to integer factoring), but the discrete logarithm problem is also important. Much public-key cryptanalysis concerns numerical algorithms for solving these computational problems, or some of them, efficiently (i.e., in a practical time). For instance, the best known algorithms for solving the elliptic curve-based version of discrete logarithm are much more time-consuming than the best known algorithms for factoring, at least for problems of more or less equivalent size. Thus, other things being equal, to achieve an equivalent strength of attack resistance, factoring-based encryption techniques must use larger keys than elliptic curve techniques. For this reason, public-key cryptosystems based on elliptic curves have become popular since their invention in the mid-1990s.
+
+While pure cryptanalysis uses weaknesses in the algorithms themselves, other attacks on cryptosystems are based on actual use of the algorithms in real devices, and are called side-channel attacks. If a cryptanalyst has access to, for example, the amount of time the device took to encrypt a number of plaintexts or report an error in a password or PIN character, he may be able to use a timing attack to break a cipher that is otherwise resistant to analysis. An attacker might also study the pattern and length of messages to derive valuable information; this is known as traffic analysis,[36] and can be quite useful to an alert adversary. Poor administration of a cryptosystem, such as permitting too short keys, will make any system vulnerable, regardless of other virtues. And, of course, social engineering, and other attacks against the personnel who work with cryptosystems or the messages they handle (e.g., bribery, extortion, blackmail, espionage, torture, ...) may be the most productive attacks of all.
+
+Cryptographic primitives
+
+Much of the theoretical work in cryptography concerns cryptographic primitives—algorithms with basic cryptographic properties—and their relationship to other cryptographic problems. More complicated cryptographic tools are then built from these basic primitives. These primitives provide fundamental properties, which are used to develop more complex tools called cryptosystems or cryptographic protocols, which guarantee one or more high-level security properties. Note however, that the distinction between cryptographic primitives and cryptosystems, is quite arbitrary; for example, the RSA algorithm is sometimes considered a cryptosystem, and sometimes a primitive. Typical examples of cryptographic primitives include pseudorandom functions, one-way functions, etc.
+
+Cryptosystems
+
+One or more cryptographic primitives are often used to develop a more complex algorithm, called a cryptographic system, or cryptosystem. Cryptosystems (e.g. El-Gamal encryption) are designed to provide particular functionality (e.g. public key encryption) while guaranteeing certain security properties (e.g. chosen-plaintext attack (CPA) security in the random oracle model). Cryptosystems use the properties of the underlying cryptographic primitives to support the system's security properties. Of course, as the distinction between primitives and cryptosystems is somewhat arbitrary, a sophisticated cryptosystem can be derived from a combination of several more primitive cryptosystems. In many cases, the cryptosystem's structure involves back and forth communication among two or more parties in space (e.g., between the sender of a secure message and its receiver) or across time (e.g., cryptographically protected backup data). Such cryptosystems are sometimes called cryptographic protocols.
+
+Some widely known cryptosystems include RSA encryption, Schnorr signature, El-Gamal encryption, PGP, etc. More complex cryptosystems include electronic cash[37] systems, signcryption systems, etc. Some more 'theoretical' cryptosystems include interactive proof systems,[38] (like zero-knowledge proofs),[39] systems for secret sharing,[40][41] etc.
+
+Until recently, most security properties of most cryptosystems were demonstrated using empirical techniques, or using ad hoc reasoning. Recently, there has been considerable effort to develop formal techniques for establishing the security of cryptosystems; this has been generally called provable security. The general idea of provable security is to give arguments about the computational difficulty needed to compromise some security aspect of the cryptosystem (i.e., to any adversary).
+
+The study of how best to implement and integrate cryptography in software applications is itself a distinct field; see: Cryptographic engineering and Security engineering.
+
+Legal issues
+
+See also: Cryptography laws in different nations
+Prohibitions
+
+Cryptography has long been of interest to intelligence gathering and law enforcement agencies. Secret communications may be criminal or even treasonous. Because of its facilitation of privacy, and the diminution of privacy attendant on its prohibition, cryptography is also of considerable interest to civil rights supporters. Accordingly, there has been a history of controversial legal issues surrounding cryptography, especially since the advent of inexpensive computers has made widespread access to high quality cryptography possible.
+
+In some countries, even the domestic use of cryptography is, or has been, restricted. Until 1999, France significantly restricted the use of cryptography domestically, though it has since relaxed many of these rules. In China and Iran, a license is still required to use cryptography.[42] Many countries have tight restrictions on the use of cryptography. Among the more restrictive are laws in Belarus, Kazakhstan, Mongolia, Pakistan, Singapore, Tunisia, and Vietnam.[43]
+
+In the United States, cryptography is legal for domestic use, but there has been much conflict over legal issues related to cryptography. One particularly important issue has been the export of cryptography and cryptographic software and hardware. Probably because of the importance of cryptanalysis in World War II and an expectation that cryptography would continue to be important for national security, many Western governments have, at some point, strictly regulated export of cryptography. After World War II, it was illegal in the US to sell or distribute encryption technology overseas; in fact, encryption was designated as auxiliary military equipment and put on the United States Munitions List.[44] Until the development of the personal computer, asymmetric key algorithms (i.e., public key techniques), and the Internet, this was not especially problematic. However, as the Internet grew and computers became more widely available, high quality encryption techniques became well-known around the globe. As a result, export controls came to be seen to be an impediment to commerce and to research.
+
+Export controls
+
+Main article: Export of cryptography
+In the 1990s, there were several challenges to US export regulations of cryptography. One involved Philip Zimmermann's Pretty Good Privacy (PGP) encryption program; it was released in the US, together with its source code, and found its way onto the Internet in June 1991. After a complaint by RSA Security (then called RSA Data Security, Inc., or RSADSI), Zimmermann was criminally investigated by the Customs Service and the FBI for several years. No charges were ever filed, however.[45][46] Also, Daniel J. Bernstein, then a graduate student at UC Berkeley, brought a lawsuit against the US government challenging some aspects of the restrictions based on free speech grounds. The 1995 case Bernstein v. United States ultimately resulted in a 1999 decision that printed source code for cryptographic algorithms and systems was protected as free speech by the United States Constitution.[47]
+
+In 1996, thirty-nine countries signed the Wassenaar Arrangement, an arms control treaty that deals with the export of arms and "dual-use" technologies such as cryptography. The treaty stipulated that the use of cryptography with short key-lengths (56-bit for symmetric encryption, 512-bit for RSA) would no longer be export-controlled.[48] Cryptography exports from the US are now much less strictly regulated than in the past as a consequence of a major relaxation in 2000;[43] there are no longer very many restrictions on key sizes in US-exported mass-market software. In practice today, since the relaxation in US export restrictions, and because almost every personal computer connected to the Internet, everywhere in the world, includes US-sourced web browsers such as Firefox or Internet Explorer, almost every Internet user worldwide has access to quality cryptography (i.e., when using sufficiently long keys with properly operating and unsubverted software, etc.) in their browsers; examples are Transport Layer Security or SSL stack. The Mozilla Thunderbird and Microsoft Outlook E-mail client programs similarly can connect to IMAP or POP servers via TLS, and can send and receive email encrypted with S/MIME. Many Internet users don't realize that their basic application software contains such extensive cryptosystems. These browsers and email programs are so ubiquitous that even governments whose intent is to regulate civilian use of cryptography generally don't find it practical to do much to control distribution or use of cryptography of this quality, so even when such laws are in force, actual enforcement is often effectively impossible.
+
+NSA involvement
+
+See also: Clipper chip
+Another contentious issue connected to cryptography in the United States is the influence of the National Security Agency on cipher development and policy. The NSA was involved with the design of DES during its development at IBM and its consideration by the National Bureau of Standards as a possible Federal Standard for cryptography.[49] DES was designed to be resistant to differential cryptanalysis,[50] a powerful and general cryptanalytic technique known to the NSA and IBM, that became publicly known only when it was rediscovered in the late 1980s.[51] According to Steven Levy, IBM discovered differential cryptanalysis,[52] but kept the technique secret at the NSA's request. The technique became publicly known only when Biham and Shamir re-discovered and announced it some years later. The entire affair illustrates the difficulty of determining what resources and knowledge an attacker might actually have.
+
+Another instance of the NSA's involvement was the 1993 Clipper chip affair, an encryption microchip intended to be part of the Capstone cryptography-control initiative. Clipper was widely criticized by cryptographers for two reasons. The cipher algorithm (called Skipjack) was then classified (declassified in 1998, long after the Clipper initiative lapsed). The classified cipher caused concerns that the NSA had deliberately made the cipher weak in order to assist its intelligence efforts. The whole initiative was also criticized based on its violation of Kerckhoffs's Principle, as the scheme included a special escrow key held by the government for use by law enforcement, for example in wiretaps.[46]
+
+Digital rights management
+
+Main article: Digital rights management
+Cryptography is central to digital rights management (DRM), a group of techniques for technologically controlling use of copyrighted material, being widely implemented and deployed at the behest of some copyright holders. In 1998, American President Bill Clinton signed the Digital Millennium Copyright Act (DMCA), which criminalized all production, dissemination, and use of certain cryptanalytic techniques and technology (now known or later discovered); specifically, those that could be used to circumvent DRM technological schemes.[53] This had a noticeable impact on the cryptography research community since an argument can be made that any cryptanalytic research violated, or might violate, the DMCA. Similar statutes have since been enacted in several countries and regions, including the implementation in the EU Copyright Directive. Similar restrictions are called for by treaties signed by World Intellectual Property Organization member-states.
+
+The United States Department of Justice and FBI have not enforced the DMCA as rigorously as had been feared by some, but the law, nonetheless, remains a controversial one. Niels Ferguson, a well-respected cryptography researcher, has publicly stated[54] that he will not release some of his research into an Intel security design for fear of prosecution under the DMCA. Both Alan Cox (longtime number 2 in Linux kernel development) and Professor Edward Felten (and some of his students at Princeton) have encountered problems related to the Act. Dmitry Sklyarov was arrested during a visit to the US from Russia, and jailed for five months pending trial for alleged violations of the DMCA arising from work he had done in Russia, where the work was legal. In 2007, the cryptographic keys responsible for Blu-ray and HD DVD content scrambling were discovered and released onto the Internet. In both cases, the MPAA sent out numerous DMCA takedown notices, and there was a massive internet backlash[55] triggered by the perceived impact of such notices on fair use and free speech.
+
+See also
+
+Category:Cryptographers
+List of cryptographers
+Encyclopedia of Cryptography and Security
+Intypedia
+List of important publications in cryptography
+List of multiple discoveries (see "RSA")
+List of unsolved problems in computer science
+Outline of cryptography
+Strong cryptography
+
+A chosen-ciphertext attack (CCA) is an attack model for cryptanalysis in which the cryptanalyst gathers information, at least in part, by choosing a ciphertext and obtaining its decryption under an unknown key. In the attack, an adversary has a chance to enter one or more known ciphertexts into the system and obtain the resulting plaintexts. From these pieces of information the adversary can attempt to recover the hidden secret key used for decryption.
+A number of otherwise secure schemes can be defeated under chosen-ciphertext attack. For example, the El Gamal cryptosystem is semantically secure under chosen-plaintext attack, but this semantic security can be trivially defeated under a chosen-ciphertext attack. Early versions of RSA padding used in the SSL protocol were vulnerable to a sophisticated adaptive chosen-ciphertext attack which revealed SSL session keys. Chosen-ciphertext attacks have implications for some self-synchronizing stream ciphers as well. Designers of tamper-resistant cryptographic smart cards must be particularly cognizant of these attacks, as these devices may be completely under the control of an adversary, who can issue a large number of chosen-ciphertexts in an attempt to recover the hidden secret key.
+When a cryptosystem is vulnerable to chosen-ciphertext attack, implementers must be careful to avoid situations in which an adversary might be able to decrypt chosen-ciphertexts (i.e., avoid providing a decryption oracle). This can be more difficult than it appears, as even partially chosen ciphertexts can permit subtle attacks. Additionally, some cryptosystems (such as RSA) use the same mechanism to sign messages and to decrypt them. This permits attacks when hashing is not used on the message to be signed. A better approach is to use a cryptosystem which is provably secure under chosen-ciphertext attack, including (among others) RSA-OAEP, Cramer-Shoup and many forms of authenticated symmetric encryption.
+Contents  [hide] 
+1 Varieties of chosen-ciphertext attacks
+1.1 Lunchtime attacks
+1.2 Adaptive chosen-ciphertext attack
+2 See also
+3 References
+Varieties of chosen-ciphertext attacks [edit]
+
+Chosen-ciphertext attacks, like other attacks, may be adaptive or non-adaptive. In a non-adaptive attack, the attacker chooses the ciphertext or ciphertexts to decrypt in advance, and does not use the resulting plaintexts to inform their choice for more ciphertexts. In an adaptive chosen-ciphertext attack, the attacker makes their ciphertext choices adaptively, that is, depending on the result of prior decryptions.
+Lunchtime attacks [edit]
+A specially noted variant of the chosen-ciphertext attack is the "lunchtime", "midnight", or "indifferent" attack, in which an attacker may make adaptive chosen-ciphertext queries but only up until a certain point, after which the attacker must demonstrate some improved ability to attack the system.[1] The term "lunchtime attack" refers to the idea that a user's computer, with the ability to decrypt, is available to an attacker while the user is out to lunch. This form of the attack was the first one commonly discussed: obviously, if the attacker has the ability to make adaptive chosen ciphertext queries, no encrypted message would be safe, at least until that ability is taken away. This attack is sometimes called the "non-adaptive chosen ciphertext attack";[2] here, "non-adaptive" refers to the fact that the attacker cannot adapt their queries in response to the challenge, which is given after the ability to make chosen ciphertext queries has expired.
+Adaptive chosen-ciphertext attack [edit]
+Main article: Adaptive chosen-ciphertext attack
+A (full) adaptive chosen-ciphertext attack is an attack in which ciphertexts may be chosen adaptively before and after a challenge ciphertext is given to the attacker, with only the stipulation that the challenge ciphertext may not itself be queried. This is a stronger attack notion than the lunchtime attack, and is commonly referred to as a CCA2 attack, as compared to a CCA1 (lunchtime) attack.[2] Few practical attacks are of this form. Rather, this model is important for its use in proofs of security against chosen-ciphertext attacks. A proof that attacks in this model are impossible implies that any realistic chosen-ciphertext attack cannot be performed.
+A practical adaptive chosen-ciphertext attack is the Bleichenbacher attack against PKCS#1.[3]
+Cryptosystems proven secure against adaptive chosen-ciphertext attacks include the Cramer-Shoup system[1] and RSA-OAEP.[4]
+
+
+In cryptography, ciphertext (or cyphertext) is the result of encryption performed on plaintext using an algorithm, called a cipher.[1] Ciphertext is also known as encrypted or encoded information because it contains a form of the original plaintext that is unreadable by a human or computer without the proper cipher to decrypt it. Decryption, the inverse of encryption, is the process of turning ciphertext into readable plaintext. Ciphertext is not to be confused with codetext because the latter is a result of a Code, not a cipher.
+Contents  [hide] 
+1 Symmetric key example
+2 Types of ciphers
+2.1 Historical ciphers
+2.2 Modern ciphers
+3 Cryptanalysis
+3.1 Attack Models
+4 Famous ciphertexts
+5 See also
+6 References
+7 Further reading
+Symmetric key example[edit]
+
+Let  be the plaintext message that Alice wants to secretly transmit to Bob and let  be the encryption cipher, where  is a secret key. Alice must first transform the plaintext into ciphertext, , in order to securely send the message to Bob.
+[2]
+Both Alice and Bob must know the choice of key, , or else the ciphertext is useless. Once the message is encrypted as ciphertext, Alice can safely transmit it to Bob (assuming no one else knows the key). In order to read Alice's message, Bob must decrypt the ciphertext using  which is known as the decryption cipher, .
+[2]
+Types of ciphers[edit]
+
+Main article: Cipher
+The history of cryptography begins thousands of years ago and contains a variety of different types of encryption. Earlier algorithms were performed by hand and are substantially different from modern algorithms, which are generally executed by a machine.
+Historical ciphers[edit]
+Historical pen and paper ciphers used in the past are sometimes known as classical ciphers. They include:
+Substitution cipher: the units of plaintext are replaced with ciphertext (Caesar cipher and One-time pad)
+Transposition cipher: the ciphertext is a permutation of the plaintext (Rail fence cipher)
+Polyalphabetic substitution cipher: a substitution cipher using multiple substitution alphabets (Vigenère cipher and Enigma machine)
+Permutation cipher: a transposition cipher in which the key is a permutation
+Historical ciphers are not generally used as a standalone encryption solution because they are quite easy to crack. Many of the classical ciphers can be cracked using brute force or by analyzing only ciphertext with the exception of the one-time pad.
+Modern ciphers[edit]
+Modern ciphers are more secure than classical ciphers and are designed to withstand a wide range of attacks. An attacker should not be able to find the key used in a modern cipher, even if he knows any amount of plaintext and corresponding ciphertext. Modern encryption methods can be divided into the following categories:
+Private-key cryptography (symmetric key algorithm): the same key is used for encryption and decryption
+Public-key cryptography (asymmetric key algorithm): two different keys are used for encryption and decryption
+In a symmetric key algorithm (e.g., DES and AES), the sender and receiver must have a shared key set up in advance and kept secret from all other parties; the sender uses this key for encryption, and the receiver uses the same key for decryption. In an asymmetric key algorithm (e.g., RSA), there are two separate keys: a public key is published and enables any sender to perform encryption, while a private key is kept secret by the receiver and enables only him to perform correct decryption.
+Symmetric key ciphers can be divided into block ciphers and stream ciphers. Block ciphers operate on fixed-length groups of bits, called blocks, with an unvarying transformation. Stream ciphers encrypt plaintext digits one at a time on a continuous stream of data and the transformation of successive digits varies during the encryption process.
+Cryptanalysis[edit]
+
+
+
+The Zimmermann Telegram decrypted into plaintext (and translated into English).
+Main article: Cryptanalysis
+Cryptanalysis is the study of methods for obtaining the meaning of encrypted information, without access to the secret information that is normally required to do so. Typically, this involves knowing how the system works and finding a secret key. Cryptanalysis is also referred to as codebreaking or cracking the code. Ciphertext is generally the easiest part of a cryptosystem to obtain and therefore is an important part of cryptanalysis. Depending on what information is available and what type of cipher is being analyzed, crypanalysts can follow one or more attack models to crack a cipher.
+Attack Models[edit]
+Ciphertext-only: the cryptanalyst has access only to a collection of ciphertexts or codetexts.
+Known-plaintext: the attacker has a set of ciphertexts to which he knows the corresponding plaintext.
+Chosen-plaintext attack: the attacker can obtain the ciphertexts corresponding to an arbitrary set of plaintexts of his own choosing.
+Batch chosen-plaintext attack: where the cryptanalyst chooses all plaintexts before any of them are encrypted. This is often the meaning of an unqualified use of "chosen-plaintext attack".
+Adaptive chosen-plaintext attack: where the cryptanalyst makes a series of interactive queries, choosing subsequent plaintexts based on the information from the previous encryptions.
+Chosen-ciphertext attack: the attacker can obtain the plaintexts corresponding to an arbitrary set of ciphertexts of his own choosing.
+Adaptive chosen-ciphertext attack
+Indifferent chosen-ciphertext attack
+Related-key attack: like a chosen-plaintext attack, except the attacker can obtain ciphertexts encrypted under two different keys. The keys are unknown, but the relationship between them is known; for example, two keys that differ in the one bit.
+The ciphertext-only attack model is the weakest attack because it implies that the cryptanalyst has nothing but ciphertext. Modern ciphers rarely fail under this attack.[3]
+
+In cryptography, a cipher (or cypher) is an algorithm for performing encryption or decryption—a series of well-defined steps that can be followed as a procedure. An alternative, less common term is encipherment. To encipher or encode is to convert information from plain text into code or cipher. In non-technical usage, a "cipher" is the same thing as a "code"; however, the concepts are distinct in cryptography. In classical cryptography, ciphers were distinguished from codes. Codes operated by substituting according to a large codebook which linked a random string of characters or numbers to a word or phrase. For example, "UQJHSE" could be the code for "Proceed to the following coordinates". When using a cipher the original information is known as plaintext, and the encrypted form as ciphertext. The ciphertext message contains all the information of the plaintext message, but is not in a format readable by a human or computer without the proper mechanism to decrypt it.
+The operation of a cipher usually depends on a piece of auxiliary information, called a key (or, in traditional NSA parlance, a cryptovariable). The encrypting procedure is varied depending on the key, which changes the detailed operation of the algorithm. A key must be selected before using a cipher to encrypt a message. Without knowledge of the key, it should be extremely difficult, if not impossible, to decrypt the resulting ciphertext into readable plaintext.
+Most modern ciphers can be categorized in several ways
+By whether they work on blocks of symbols usually of a fixed size (block ciphers), or on a continuous stream of symbols (stream ciphers).
+By whether the same key is used for both encryption and decryption (symmetric key algorithms), or if a different key is used for each (asymmetric key algorithms). If the algorithm is symmetric, the key must be known to the recipient and sender and to no one else. If the algorithm is an asymmetric one, the enciphering key is different from, but closely related to, the deciphering key. If one key cannot be deduced from the other, the asymmetric key algorithm has the public/private key property and one of the keys may be made public without loss of confidentiality.
+Contents  [hide] 
+1 Etymology
+2 Versus codes
+3 Types
+3.1 Historical
+3.2 Modern
+4 Key size and vulnerability
+5 See also
+6 Notes
+7 References
+8 External links
+Etymology [edit]
+
+"Cipher" is alternatively spelled "cypher"; similarly "ciphertext" and "cyphertext", and so forth.
+The word "cipher" in former times meant "zero" and had the same origin: Middle French as cifre and Medieval Latin as cifra, from the Arabic صفر ṣifr = zero (see Zero—Etymology). "Cipher" was later used for any decimal digit, even any number. There are many theories about how the word "cipher" may have come to mean "encoding":
+Encoding often involved numbers.
+The Roman number system was very cumbersome because there was no concept of zero (or empty space). The concept of zero (which was also called "cipher"), which is now common knowledge, was alien to medieval Europe, so confusing and ambiguous to common Europeans that in arguments people would say "talk clearly and not so far fetched as a cipher". Cipher came to mean concealment of clear messages or encryption.
+The French formed the word "chiffre" and adopted the Italian word "zero".
+The English used "zero" for "0", and "cipher" from the word "ciphering" as a means of computing.
+The Germans used the words "Ziffer" (digit) and "Chiffre".
+The Dutch still use the word "cijfer" to refer to a numerical digit.
+The Italians and the Spanish also use the word "cifra" to refer to a number.
+The Serbians use the word "cifra", which refers to a digit, or in some cases, any number. Besides "cifra", they use word "broj" for a number.
+Ibrahim Al-Kadi concluded that the Arabic word sifr, for the digit zero, developed into the European technical term for encryption.[1]
+Versus codes [edit]
+
+Main article: Code (cryptography)
+In non-technical usage, a "(secret) code" typically means a "cipher". Within technical discussions, however, the words "code" and "cipher" refer to two different concepts. Codes work at the level of meaning—that is, words or phrases are converted into something else and this chunking generally shortens the message.
+An example of this is the Telegraph Code which was used to shorten long telegraph messages which resulted from entering into commercial contracts using exchanges of Telegrams.
+Ciphers, on the other hand, work at a lower level: the level of individual letters, small groups of letters, or, in modern schemes, individual bits and blocks of bits. Some systems used both codes and ciphers in one system, using superencipherment to increase the security. In some cases the terms codes and ciphers are also used synonymously to substitution and transposition.
+Historically, cryptography was split into a dichotomy of codes and ciphers; and coding had its own terminology, analogous to that for ciphers: "encoding, codetext, decoding" and so on.
+However, codes have a variety of drawbacks, including susceptibility to cryptanalysis and the difficulty of managing a cumbersome codebook. Because of this, codes have fallen into disuse in modern cryptography, and ciphers are the dominant technique.
+Types [edit]
+
+There are a variety of different types of encryption. Algorithms used earlier in the history of cryptography are substantially different from modern methods, and modern ciphers can be classified according to how they operate and whether they use one or two keys.
+Historical [edit]
+Historical pen and paper ciphers used in the past are sometimes known as classical ciphers. They include simple substitution ciphers and transposition ciphers. For example "GOOD DOG" can be encrypted as "PLLX XLP" where "L" substitutes for "O", "P" for "G", and "X" for "D" in the message. Transposition of the letters "GOOD DOG" can result in "DGOGDOO". These simple ciphers and examples are easy to crack, even without plaintext-ciphertext pairs.
+Simple ciphers were replaced by polyalphabetic substitution ciphers which changed the substitution alphabet for every letter. For example "GOOD DOG" can be encrypted as "PLSX TWF" where "L", "S", and "W" substitute for "O". With even a small amount of known or estimated plaintext, simple polyalphabetic substitution ciphers and letter transposition ciphers designed for pen and paper encryption are easy to crack.[citation needed] It is possible to create a secure pen and paper cipher based on a one-time pad though, but the usual disadvantages of one-time pads apply.
+During the early twentieth century, electro-mechanical machines were invented to do encryption and decryption using transposition, polyalphabetic substitution, and a kind of "additive" substitution. In rotor machines, several rotor disks provided polyalphabetic substitution, while plug boards provided another substitution. Keys were easily changed by changing the rotor disks and the plugboard wires. Although these encryption methods were more complex than previous schemes and required machines to encrypt and decrypt, other machines such as the British Bombe were invented to crack these encryption methods.
+Modern [edit]
+Modern encryption methods can be divided by two criteria: by type of key used, and by type of input data.
+By type of key used ciphers are divided into:
+symmetric key algorithms (Private-key cryptography), where the same key is used for encryption and decryption, and
+asymmetric key algorithms (Public-key cryptography), where two different keys are used for encryption and decryption.
+In a symmetric key algorithm (e.g., DES and AES), the sender and receiver must have a shared key set up in advance and kept secret from all other parties; the sender uses this key for encryption, and the receiver uses the same key for decryption. The Feistel cipher uses a combination of substitution and transposition techniques. Most block cipher algorithms are based on this structure. In an asymmetric key algorithm (e.g., RSA), there are two separate keys: a public key is published and enables any sender to perform encryption, while a private key is kept secret by the receiver and enables only him to perform correct decryption.
+Ciphers can be distinguished into two types by the type of input data:
+block ciphers, which encrypt block of data of fixed size, and
+stream ciphers, which encrypt continuous streams of data
+
+Key size and vulnerability [edit]
+
+In a pure mathematical attack, (i.e., lacking any other information to help break a cipher) three factors above all count:
+Mathematical advances that allow new attacks or weaknesses to be discovered and exploited.
+Computational power available, i.e., the computing power which can be brought to bear on the problem. It is important to note that average performance/capacity of a single computer is not the only factor to consider. An adversary can use multiple computers at once, for instance, to increase the speed of exhaustive search for a key (i.e., "brute force" attack) substantially.
+Key size, i.e., the size of key used to encrypt a message. As the key size increases, so does the complexity of exhaustive search to the point where it becomes impracticable to crack encryption directly.
+Since the desired effect is computational difficulty, in theory one would choose an algorithm and desired difficulty level, thus decide the key length accordingly.
+An example of this process can be found at Key Length which uses multiple reports to suggest that a symmetric cipher with 128 bits, an asymmetric cipher with 3072 bit keys, and an elliptic curve cipher with 512 bits, all have similar difficulty at present.
+Claude Shannon proved, using information theory considerations, that any theoretically unbreakable cipher must have keys which are at least as long as the plaintext, and used only once: one-time pad.

@@ -1,8 +1,15 @@
-package example;
+import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
@@ -12,12 +19,23 @@ import fuzzyOntologyMiner.MiningParams;
 import fuzzyOntologyMiner.correlationFunctions.BalancedMutualInformation;
 import fuzzyOntologyMiner.postag.PosTag;
 
-public class MainTest {
-  public static void main(String[] args) {
-    
+class MainTest {
+  
+  private static Path INPUT;
+  private static Path OUTPUT;
+  
+  @BeforeAll
+  static void setup() throws FileNotFoundException {
+    INPUT = getResourcePath("TestData/Hackers");
+    if (INPUT == null) throw new FileNotFoundException("Invalid input");
+    OUTPUT = Paths.get("output.owl");
+  }
+
+  @Test
+  void test() {
     IMiningParams miningParams = new MiningParams();
     
-    miningParams.setInputDocumentsLocation(Paths.get(args[0]));
+    miningParams.setInputDocumentsLocation(INPUT);
     
     /* Search patterns */
     miningParams.addMiningPattern(PosTag.NOUN);
@@ -39,15 +57,28 @@ public class MainTest {
     miningParams.setConceptRelationFilterThreshold(0.022);
     
     /* Ontology output */
-    miningParams.setOutputOntologyLocation(Paths.get(args[1]));
+    miningParams.setOutputOntologyLocation(OUTPUT);
     
     try {
-      System.out.println("Start mining...");
       FuzzyOntologyMiner.mine(miningParams);
-      System.out.println("Finished");
     } catch (ClassNotFoundException | OWLOntologyCreationException | OWLOntologyStorageException | IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+  }
+  
+  private static Path getResourcePath(String resource) {
+    URL resourceURL = MainTest.class.getClassLoader().getResource(resource);
+    if (resourceURL == null) return null;
+    
+    URI resourceURI;
+    try {
+      resourceURI = resourceURL.toURI();
+      if (!resourceURI.getScheme().equals("file")) return null;
+    } catch (URISyntaxException e) {
+      return null;
+    }
+    
+    return Paths.get(resourceURI);
   }
 }

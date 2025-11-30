@@ -1,0 +1,31 @@
+plugins {
+	id 'java'
+	id 'application'
+}
+
+group = 'fuzzyOntologyMiner'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+dependencies {
+		implementation "net.sourceforge.owlapi:owlapi-distribution:3.4.4"
+		implementation "edu.stanford.nlp:stanford-corenlp:4.5.10"
+		
+		testImplementation "org.junit.jupiter:junit-jupiter:5.7.1"
+		testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+
+application {
+	mainClass = 'fuzzyOntologyMiner.main.Main'
+}
+
+tasks.named('test', Test) {
+	useJUnitPlatform()
+}
