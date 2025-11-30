@@ -1,10 +1,6 @@
 package fuzzyOntologyMiner.main;
 
-import java.io.IOException;
 import java.nio.file.Paths;
-
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
 import fuzzyOntologyMiner.FuzzyOntologyMiner;
 import fuzzyOntologyMiner.IMiningParams;
@@ -41,13 +37,8 @@ public class Main {
     /* Ontology output */
     miningParams.setOutputOntologyLocation(Paths.get(args[1]));
     
-    try {
-      System.out.println("Start mining...");
-      FuzzyOntologyMiner.mine(miningParams);
-      System.out.println("Finished");
-    } catch (ClassNotFoundException | OWLOntologyCreationException | OWLOntologyStorageException | IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    System.out.println("Start mining...");
+    FuzzyOntologyMiner.mine(miningParams);
+    System.out.println("Finished");
   }
 }

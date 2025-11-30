@@ -3,7 +3,6 @@ package tests.main;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -12,8 +11,6 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
 import fuzzyOntologyMiner.FuzzyOntologyMiner;
 import fuzzyOntologyMiner.IMiningParams;
@@ -43,22 +40,14 @@ class FuzzyOntologyMinerTest {
   
   @Test
   void extractFrequenciesTest() {
-    try {
-      TermFrequencies<String> frequencies = FuzzyOntologyMiner.extractFrequencies(miningParams);
-      assertNotEquals(0, frequencies.getTotWindows(), "At least a window must be found");
-      assertNotEquals(0, frequencies.getTerms().size(), "At least a term must be found");
-    } catch (ClassNotFoundException | IOException e) {
-      e.printStackTrace();
-    }
+    TermFrequencies<String> frequencies = FuzzyOntologyMiner.extractFrequencies(miningParams);
+    assertNotEquals(0, frequencies.getTotWindows(), "At least a window must be found");
+    assertNotEquals(0, frequencies.getTerms().size(), "At least a term must be found");
   }
 
   @Test
   void mineTest() {
-    try {
-      FuzzyOntologyMiner.mine(miningParams);
-    } catch (ClassNotFoundException | OWLOntologyCreationException | OWLOntologyStorageException | IOException e) {
-      e.printStackTrace();
-    }
+    FuzzyOntologyMiner.mine(miningParams);
     
     assertTrue(OUTPUT.toFile().exists());
   }

@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -44,12 +43,24 @@ import edu.stanford.nlp.process.Morphology;
 
 public class FuzzyOntologyMiner {
 
-  public static void mine(IMiningParams params) throws ClassNotFoundException, IOException, OWLOntologyCreationException, OWLOntologyStorageException {
+  /**
+   * Single entry method to extract an ontology from a corpus of documents.
+   * 
+   * @param params mining parameters
+   */
+  public static void mine(IMiningParams params) {
+    /* Extract terms and their frequencies */
     TermFrequencies<String> termFrequencies = extractFrequencies(params);
+    
+    /* Create context vectors */
     ContextVectors<String> contextVectors = createContextVectors(termFrequencies, 
                                                                  params.getCorrelationFunction(),
                                                                  params.getConceptFilteringThreshold());
+    
+    /* Create a taxonomy */
     Taxonomy<String> taxonomy = createTaxonomy(contextVectors, params.getConceptRelationFilterThreshold());
+    
+    /* Save it as an OWL ontology */
     saveOWL2FuzzyOntology(taxonomy, params.getOutputOntologyLocation());
   }
 
@@ -62,87 +73,65 @@ public class FuzzyOntologyMiner {
    * 
    * @return A {@link TermFrequencies<String>} containing the terms and their
    *         absolute and relative frequencies.
-   * @throws IOException
-   * @throws ClassNotFoundException
    */
-  public static TermFrequencies<String> extractFrequencies(IMiningParams params)
-      throws ClassNotFoundException, IOException {
-
-    File dir = params.getInputDocumentsLocation().toFile();
-
-    TermFrequencies<String> freq = new TermFrequencies<String>();
+  public static TermFrequencies<String> extractFrequencies(IMiningParams params) {
+    /* Output object */
+    TermFrequencies<String> frequencies = new TermFrequencies<String>();
+    
+    /* POS Tagger
+     * TODO tagger loading could be done in a singleton */
     MaxentTagger tagger = new MaxentTagger(params.getTaggerModel());
-    File[] listOfFiles = dir.listFiles();
+    
+    /* Object to extract terms of interest from sentences based on POS Tag patterns */
     ITermsExtractor termsExtractor = new NaiveTermsExtractor();
     termsExtractor.compile(params.getMiningPatterns());
     int windowSize = params.getWindowSize();
 
+    /* Document corpus navigation 
+     * TODO: this navigation is not recursive */
+    File dir = params.getInputDocumentsLocation().toFile();
+    File[] listOfFiles = dir.listFiles();
     for (File file : listOfFiles) {
-      if (file.isFile()) {
+      /* Examines files only */
+      if (!file.isFile()) continue;
+
+      List<List<HasWord>> sentences;
+      try {
         // TODO generalize document read (pdf, text, word, ecc.)
-        List<List<HasWord>> sentences = MaxentTagger.tokenizeText(new BufferedReader(new FileReader(file)));
+        sentences = MaxentTagger.tokenizeText(new BufferedReader(new FileReader(file)));
+      } catch (FileNotFoundException e) {
+        continue;
+      }
 
-        /* For each sentence */
-        for (List<HasWord> sentence : sentences) {
-          /*
-           * filtered sentence conterrà parole taggate escluse stop words e punteggiatura
-           * su cui è già stato effettuato lo stemming
-           */
-          List<TaggedWord> preparedSentence = prepareSentence(tagger, sentence);
+      /* For each sentence */
+      for (List<HasWord> sentence : sentences) {
+        /* prepare the sentence for processing */
+        List<TaggedWord> preparedSentence = prepareSentence(tagger.tagSentence(sentence));
 
-          /*
-           * Per ogni finestra di testo di largheza windowSize, bisogna controllare se i
-           * tag delle parole rispettano il pattern di ricerca specificato come parametro
-           * della classe, nel qual caso si memorizzano le relative frequenze.
-           */
+        /* For each text window */
+        int numWindows = preparedSentence.size() - windowSize + 1;
+        for (int windowIdx = 0; windowIdx < numWindows; windowIdx++) {
+          frequencies.augmentWindows();
+          List<TaggedWord> textWindow = preparedSentence.subList(windowIdx, windowIdx + windowSize);
+          TreeSet<String> termsInWindow = new TreeSet<>();
+          termsInWindow.addAll(termsExtractor.extract(textWindow));
 
-          int numWindows = preparedSentence.size() - windowSize + 1;
-          for (int windowIdx = 0; windowIdx < numWindows; windowIdx++) {
-            // TODO what if windowSize > sentence.length()?
-            // Array contenente i termini già visti in questa finestra
-            TreeSet<String> termsInWindow = new TreeSet<>();
-            freq.augmentWindows();
-            termsInWindow.addAll(termsExtractor.extract(preparedSentence.subList(windowIdx, windowIdx + windowSize)));
-
-            for (String term : termsInWindow) {
-              freq.addOccurrence(term);
-              for (String otherTerm : termsInWindow.tailSet(term, false)) {
-                freq.addOccurrence(term, otherTerm);
-              }
+          for (String term : termsInWindow) {
+            frequencies.addOccurrence(term);
+            for (String otherTerm : termsInWindow.tailSet(term, false)) {
+              frequencies.addOccurrence(term, otherTerm);
             }
-
-          } // Windows loop end
+          }
         }
       }
     }
 
-    // calcolo le frequenze dividendo per il numero di finestre
-    freq.computeFrequencies();
-    freq.filterTerms(params.getMinAllowedTermFrequency(), params.getMaxAllowedTermFrequency());
-    return freq;
-  }
-
-  private static List<TaggedWord> prepareSentence(MaxentTagger tagger, List<HasWord> sentence) {
-    List<TaggedWord> preparedSentence = new ArrayList<TaggedWord>();
-
-    // si effettua il POS tagging sulla frase
-    List<TaggedWord> taggedSentence = tagger.tagSentence(sentence);
-
-    // dalla frase taggata bisogna eliminare stop words ed effettuare lo stemming
-    for (TaggedWord taggedWord : taggedSentence) {
-
-      /*
-       * la parola viene portata in lowercase ed è soggetta a stemming. La parola
-       * ottenuta viene aggiunta ai termini filtrati solo se non è una stopword e non
-       * è un segno di punteggiatura (ovvero rispetta la regexp [a-zA-Z0-9]+)
-       */
-
-      taggedWord.setWord(Morphology.lemmaStatic(taggedWord.word(), taggedWord.tag(), true));
-      if (!StopWords.isStopWord(taggedWord.word()) && taggedWord.word().matches("[a-zA-Z]+")) { // \\w+")){
-        preparedSentence.add(taggedWord);
-      }
-    }
-    return preparedSentence;
+    /* Calculate the frequencies */
+    frequencies.computeFrequencies();
+    
+    /* Filter out noisy terms */
+    frequencies.filterTerms(params.getMinAllowedTermFrequency(), params.getMaxAllowedTermFrequency());
+    return frequencies;
   }
 
   /**
@@ -184,143 +173,171 @@ public class FuzzyOntologyMiner {
       }
     }
 
+    /* Finalizes the context vectors calculation by normalizing values and discarding
+     * non relevant concepts */
     contextVectors.finalize(alpha);
 
     return contextVectors;
   }
 
   /**
-   * Metodo che costruisce una tassonomia
+   * Creates a taxonomy, a graph of relations between concepts.
    * 
-   * @param contextVectors Vettori di contesto
-   * @param lambda         soglia minima per la relazione fra concetti
-   * @return Un oggetto di tipo Taxonomy<String>
+   * @param contextVectors Context vectors needed for the construction of the taxonomy.
+   * @param lambda         threshold to filter out noisy relations. Interesting relations are at least lambda.
+   * @return a {@link Taxonomy<String>} object containing the relations between concepts.
    */
   public static Taxonomy<String> createTaxonomy(ContextVectors<String> contextVectors, double lambda) {
-
-    // Lista di concetti
+    /* Get the list of concepts */
     List<String> concepts = contextVectors.getConcepts();
-
-    // Lista di termini
-    List<String> terms = contextVectors.getTerms();
-
-    // Oggetto tassonomia che verrà restitutito
+        
+    /* Output object */
     Taxonomy<String> taxonomy = new Taxonomy<String>(concepts);
 
-    // numeratore e denominatore della formula Spec(ci, cj)
-    double num = 0, denom = 0;
-
-    // variabili che conterranno la membership di un termine ai due concetti
-    double membership_1, membership_2;
-
-    // specificità di ci rispetto a cj
-    double spec;
-
-    // Per ogni coppia di concetti
-    for (String c1 : concepts) {
-      for (String c2 : concepts) {
-
-        // se i concetti sono uguali, allora la specificità è 1
-        if (c1.equals(c2))
-          taxonomy.setSpecificity(c1, c2, 1);
-        else {
-
-          // Inizializzo numeratore e denominatore
-          num = 0;
-          denom = 0;
-
-          // per ogni termine
-          for (String term : terms) {
-            // Calcolo la membership rispetto a c1 e c2
-            membership_1 = contextVectors.getMembership(c1, term);
-            membership_2 = contextVectors.getMembership(c2, term);
-
-            // Aggiungo la più piccola delle due al numeratore
-            num += Math.min(membership_1, membership_2);
-            // num += ((membership_1 * membership_2)/(membership_1 + membership_2 -
-            // membership_1*membership_2));
-
-            // Aggiungo la membership in c1 al denominatore
-            denom += membership_1;
-          }
-
-          // calcolo la specificità
-          spec = num / denom;
-
-          // se la specificità è maggiore della soglia
-          if (spec > lambda) {
-            // la memorizzo
-            taxonomy.setSpecificity(c1, c2, spec);
-          }
+    /* For each pair of concepts */
+    for (String subconcept : concepts) {
+      for (String concept : concepts) {
+        /* compute specificity and discards values less than lambda */
+        double spec = computeSpecificity(contextVectors, subconcept, concept);
+        if (spec >= lambda) {
+          taxonomy.setSpecificity(subconcept, concept, spec);
         }
       }
     }
 
+    /* Simplify the taxonomy by removing redundant relations */
     taxonomy.taxonomyPruning();
 
     return taxonomy;
   }
 
+
   /**
-   * Metodo che, a partire dal vettore dei concetti e dalle tassonomie, crea
-   * l'ontologia
-   * 
-   * @throws OWLOntologyCreationException
-   * @throws OWLOntologyStorageException
-   * @throws FileNotFoundException
-   **/
-  public static void saveOWL2FuzzyOntology(Taxonomy<String> tax, Path output)
-      throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
+   * Saves the given {@link Taxonomy} object as a OWL2 ontology
+   * @param taxonomy object containing the taxonomy information
+   * @param output path in which the OWL ontology must be created
+   */
+  public static void saveOWL2FuzzyOntology(Taxonomy<String> taxonomy, Path output) {
 
-    // gestore dell'ontologia
+    /* OWL management objects */
     OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
-    // iri di riferimento per l'ontologia
-    IRI ontologyIRI = IRI.create("http://www.semanticweb.org/ontologies/concepts");
-    // crea ontologia
-    OWLOntology ontology = ontologyManager.createOntology(ontologyIRI);
-    // gestore interfaccia per l'ontologia
     OWLDataFactory factory = ontologyManager.getOWLDataFactory();
-
-    // Per ogni concetto crea una classe nell'ontologia
-    Map<String, OWLClass> owlClasses = new HashMap<String, OWLClass>();
-    List<String> concepts = tax.getConcepts();
-    for (String concept : concepts) {
-      IRI iriClass = IRI.create(ontologyIRI + "#" + concept);
-      OWLClass cl = factory.getOWLClass(iriClass);
-      owlClasses.put(concept, cl);
-    }
     
-    int i, j;
-    OWLClass s, c;
-    for (i = 0; i < concepts.size(); i++) {
-      for (j = 0; j < concepts.size(); j++) {
-        String sub = concepts.get(j);
-        String cls = concepts.get(i);
-        double spec = tax.getSpecificity(sub, cls);
-        if (!sub.equals(cls) && spec > 0) {
-          OWLAnnotation fuzzyAnnotation = createFuzzyAnnotation(factory, spec);
+    try {
+      /* Create the ontology */
+      IRI ontologyIRI = IRI.create("http://www.semanticweb.org/ontologies/concepts");  
+      OWLOntology ontology = ontologyManager.createOntology(ontologyIRI);
 
-          Set<OWLAnnotation> annotations = new HashSet<OWLAnnotation>();
-          annotations.add(fuzzyAnnotation);
+      /* Create an OWL Class for each concept */
+      List<String> concepts = taxonomy.getConcepts();
+      Map<String, OWLClass> owlClasses = new HashMap<>();
+      for (String concept : concepts) {
+        IRI iriClass = IRI.create(ontologyIRI + "#" + concept);
+        OWLClass cl = factory.getOWLClass(iriClass);
+        owlClasses.put(concept, cl);
+      }
 
-          s = owlClasses.get(sub);
-          c = owlClasses.get(cls);
-          OWLAxiom axiom = factory.getOWLSubClassOfAxiom(s, c, annotations);
+      /* For each pair of distinct concepts */
+      for (String concept: concepts) {
+        for (String subConcept: concepts) {
+          if (concept.equals(subConcept)) continue;
 
-          AddAxiom add = new AddAxiom(ontology, axiom);
-          ontologyManager.applyChange(add);
+          /* If the specificity is positive, add a dedicated axiom 
+           * containing the OWL annotation to the ontology */
+          double specificity = taxonomy.getSpecificity(subConcept, concept);
+          if (specificity > 0) {
+            OWLAnnotation fuzzyAnnotation = createFuzzyAnnotation(factory, specificity);
+
+            OWLAxiom axiom = factory.getOWLSubClassOfAxiom(owlClasses.get(subConcept), 
+                                                           owlClasses.get(concept), 
+                                                           Set.of(fuzzyAnnotation));
+
+            AddAxiom add = new AddAxiom(ontology, axiom);
+            ontologyManager.applyChange(add);
+          }
         }
       }
+
+      /* Write ontology on file */
+      ontologyManager.saveOntology(ontology, new FileOutputStream(output.toString()));
+    } catch (OWLOntologyCreationException e) {
+      e.printStackTrace();
+    } catch (OWLOntologyStorageException e) {
+      e.printStackTrace();
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
+  
+  /**
+   * Prepares the tagged sentence for processing by,
+   * 1) Removing stop words
+   * 2) Perform word stemming
+   * @param taggedSentence the POS tagged sentence to clean
+   * @return A list of tagged word stems without stop words
+   */
+  private static List<TaggedWord> prepareSentence(List<TaggedWord> taggedSentence) {
+    /* output list */
+    List<TaggedWord> preparedSentence = new ArrayList<TaggedWord>();
+    
+    for (TaggedWord taggedWord : taggedSentence) {
+      /* Discard stop words and punctuation */
+      if (StopWords.isStopWord(taggedWord.word()) || !taggedWord.word().matches("\\w+")) continue;
+      
+      /* Perform word stemming and transform the word to lower-case */
+      taggedWord.setWord(Morphology.lemmaStatic(taggedWord.word(), taggedWord.tag(), true));
+      
+      /* Store word */
+      preparedSentence.add(taggedWord);
+    }
+    
+    return preparedSentence;
+  }
+  
+  /**
+   * Computes the specificity of a concept to another. This is, the degree to which concept A is a sub-concept
+   * of concept B.
+   * 
+   * @param contextVectors {@link ContextVectors<String>} object containing the terms which describes the two concepts
+   * @param subconcept candidate sub-concept
+   * @param concept candidate concept
+   * @return a value in range [0, 1] describing how much subconcept is actually a sub-concept of concept.
+   */
+  private static double computeSpecificity(ContextVectors<String> contextVectors, String subconcept, String concept) {
+    /* A concept has specificity 1 to itself */
+    if (subconcept.equals(concept)) return 1;
+    
+    /* Initialize numerator and denominator of the specificity formula */
+    double num = 0;
+    double denom = 0;
+
+    /* For each term */
+    for (String term : contextVectors.getTerms()) {
+      /* Retrieve the membership of the term to subconcept and concept */
+      double membership_subconcept = contextVectors.getMembership(subconcept, term);
+      double membership_concept = contextVectors.getMembership(concept, term);
+
+      /* Add to the numerator the smallest one */
+      num += Math.min(membership_subconcept, membership_concept);
+
+      /* Add to the denominator the membership to the subconcept */
+      denom += membership_subconcept;
     }
 
-    // salvo l'ontologia su file
-    ontologyManager.saveOntology(ontology, new FileOutputStream(output.toString()));
+    /* Return the specificity. Assume 1 if the denominator is zero */
+    return denom > 0 ? num / denom : 1;
   }
 
-  public static OWLAnnotation createFuzzyAnnotation(OWLDataFactory f, double value) {
-    OWLAnnotationProperty fuzzyTag = f.getOWLAnnotationProperty(IRI.create("#fuzzyLabel"));
+  /**
+   * Creates a FuzzyOwl2 annotation for the given value
+   * @param factory {@link OWLDataFactory} to create the annotation
+   * @param value fuzzy value to embed into the annotation
+   * @return a {@link OWLAnnotation} object representing the fuzzy value.
+   */
+  private static OWLAnnotation createFuzzyAnnotation(OWLDataFactory factory, double value) {
+    OWLAnnotationProperty fuzzyTag = factory.getOWLAnnotationProperty(IRI.create("#fuzzyLabel"));
     String fuzzyowl2 = "<fuzzyOwl2 fuzzyType=\"axiom\">\n\t<Degree value=\"" + value + "\"/></fuzzyOwl2>";
-    OWLLiteral fuzzyLiteral = f.getOWLLiteral(fuzzyowl2);
-    return f.getOWLAnnotation(fuzzyTag, fuzzyLiteral);
+    OWLLiteral fuzzyLiteral = factory.getOWLLiteral(fuzzyowl2);
+    return factory.getOWLAnnotation(fuzzyTag, fuzzyLiteral);
   }
 }
