@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import fuzzyOntologyMiner.correlationFunctions.BalancedMutualInformation;
 import fuzzyOntologyMiner.correlationFunctions.ICorrelationFunction;
 import fuzzyOntologyMiner.postag.PosTag;
 import fuzzyOntologyMiner.postag.PosTagPattern;
@@ -36,6 +37,28 @@ public class MiningParams implements IMiningParams {
     
     // Empty list of patterns
     this.patterns = new ArrayList<>();
+  }
+  
+  public static IMiningParams createDefault() {
+    IMiningParams defaultParams = new MiningParams();
+    
+    /* Search patterns */
+    defaultParams.addMiningPattern(PosTag.NOUN);
+    
+    /* Term frequencies extraction parameters */
+    defaultParams.setTaggerModel("models/left3words-wsj-0-18.tagger");
+    defaultParams.setWindowSize(8);
+    defaultParams.setTermFrequencyThresholds(0.03, 0.8);
+    
+    /* Concept extraction parameters */
+    defaultParams.setConceptFilteringThreshold(0.05);
+    defaultParams.setCorrelationFunction(new BalancedMutualInformation(0.67));
+    
+    /* Taxonomy parameters */
+    defaultParams.setConceptRelationFilterThreshold(0.022);
+    
+    return defaultParams;
+    
   }
 
   // --- Implementation of IMiningParams methods ---
