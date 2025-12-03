@@ -24,58 +24,22 @@ public class TriangularMatrix<T> {
 		this(minSize);
 	}
 
+	public TriangularMatrix(List<T> terms) {
+		this(terms.size());
+		expand();
+	}
+
 	/**
 	 * Constructor.
 	 * 
 	 * @param size size of the matrix, which will be size * (size + 1)/2
 	 */
 	public TriangularMatrix(int size) {
-		terms = new ArrayList<T>();
-		values = allocateMatrix(size);
+		terms = new ArrayList<>(size);
+		values = new ArrayList<>(size);
 	}
 
-	/**
-	 * Allocates a lower triangular matrix.
-	 * 
-	 * @param size size of the matrix
-	 * @return a 2D array representing a lower triangular matrix
-	 */
-	protected double[][] allocateMatrix(int size) {
-		double[][] tmp = new double[size][];
-
-		for (int i = 0; i < size; i++) {
-			tmp[i] = new double[i + 1];
-		}
-
-		return tmp;
-	}
-
-	/**
-	 * Allocates a new lower triangular matrix whose size is double the original.
-	 * Copies the content of the original matrix into the new one.
-	 * 
-	 * @param matrix original matrix
-	 * @return a 2D array with double the size of the original, storing the same
-	 *         data as before
-	 */
-	protected double[][] growSize(double[][] matrix) {
-		int newSize = matrix.length * 2;
-		double[][] newMatrix = allocateMatrix(newSize);
-		for (int i = 0; i < matrix.length; i++) {
-			System.arraycopy(matrix[i], 0, newMatrix[i], 0, matrix[i].length);
-		}
-		return newMatrix;
-	}
-
-	/**
-	 * Grows the size of the matrix if needed.
-	 */
-	protected void checkSize() {
-		if (terms.size() > values.length) {
-			values = growSize(values);
-		}
-	}
-
+	
 	/**
 	 * Sets a value for the given term.
 	 * 
@@ -84,7 +48,7 @@ public class TriangularMatrix<T> {
 	 */
 	protected void setValue(T term, double value) {
 		int termIdx = addTerm(term);
-		values[termIdx][termIdx] = value;
+		setValue(termIdx, termIdx, value);
 	}
 
 	/**
@@ -98,7 +62,7 @@ public class TriangularMatrix<T> {
 
 		int termIdx = terms.indexOf(term);
 
-		return values[termIdx][termIdx];
+		return values.get(convertIndex(termIdx, termIdx));
 	}
 
 	/**
@@ -112,11 +76,7 @@ public class TriangularMatrix<T> {
 		int i = addTerm(first);
 		int j = addTerm(second);
 
-		if (i < j) {
-			values[j][i] = value;
-		} else {
-			values[i][j] = value;
-		}
+		setValue(i, j, value);
 	}
 
 	/**
@@ -132,11 +92,7 @@ public class TriangularMatrix<T> {
 		int i = terms.indexOf(first);
 		int j = terms.indexOf(second);
 
-		if (i < j) {
-			return values[j][i];
-		} else {
-			return values[i][j];
-		}
+		return values.get(convertIndex(i, j));
 	}
 
 	/**
@@ -149,10 +105,35 @@ public class TriangularMatrix<T> {
 	protected int addTerm(T term) {
 		if (!terms.contains(term)) {
 			terms.add(term);
-			checkSize();
+			expand();
 		}
 
 		return terms.indexOf(term);
+	}
+
+	/**
+	 * Expands the size of the matrix by adding a new row and column.
+	 */
+	private void expand() {
+		int currentSize = terms.size();
+		int valueSize = convertIndex(currentSize, currentSize) + 1;
+
+		while (values.size() <= valueSize) {
+			values.add(0.0);
+		}
+	}
+
+	/**
+	 * Sets the value at the given row and column.
+	 * 
+	 * @param row   row index
+	 * @param col   column index
+	 * @param value value to set
+	 */
+	private void setValue(int row, int col, double value) {
+		int index = convertIndex(row, col);
+
+		values.set(index, value);
 	}
 
 	/**
@@ -193,18 +174,26 @@ public class TriangularMatrix<T> {
 	/**
 	 * Normalizes the values by dividing them by the given value
 	 * 
-	 * @param value dividing factor to use to normalize
+	 * @param normalizer dividing factor to use to normalize
 	 */
-	protected void normalizeBy(double value) {
-		for (int i = 0; i < values.length; i++) {
-			for (int j = 0; j < values[i].length; j++) {
-				values[i][j] /= value;
-			}
+	protected void normalizeBy(double normalizer) {
+		if (normalizer != 0) {
+			values.replaceAll(value -> value/normalizer);
 		}
 	}
 
-	/** Actual 2D matrix */
-	protected double values[][];
+	protected int convertIndex(int row, int col) {
+		if (row < col) {
+			int tmp = row;
+			row = col;
+			col = tmp;
+		}
+
+		return ((row * (row + 1)) / 2) + col;
+	}
+
+	/** Linearized 2D matrix */
+	protected List<Double> values;
 
 	/** List of objects representing rows and columns of the matrix */
 	protected List<T> terms;

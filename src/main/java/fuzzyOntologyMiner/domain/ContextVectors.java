@@ -3,6 +3,7 @@ package fuzzyOntologyMiner.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.OptionalDouble;
 
 import fuzzyOntologyMiner.dataStructures.TriangularMatrix;
 
@@ -23,8 +24,7 @@ public class ContextVectors<TermType> extends TriangularMatrix<TermType> impleme
 	 * @param terms list of terms over which concepts must be built
 	 */
 	public ContextVectors(List<TermType> terms) {
-		super(terms.size());
-		this.terms = terms;
+		super(terms);
 
 		for (TermType term : this.terms) {
 			/*
@@ -103,29 +103,19 @@ public class ContextVectors<TermType> extends TriangularMatrix<TermType> impleme
 	 * Normalizes the membership degrees in the [0, 1] interval.
 	 */
 	private void normalizeMemberships() {
-		int currTermIdx;
-		List<TermType> concepts = getConcepts();
-		double min = Double.MAX_VALUE, max = -Double.MAX_VALUE;
+		OptionalDouble minOpt = values.stream().mapToDouble(Double::doubleValue).min();
+		OptionalDouble maxOpt = values.stream().mapToDouble(Double::doubleValue).max();
 
-		/* Find the minimum and maximum membership values */
-		for (TermType concept : concepts) {
-			currTermIdx = terms.indexOf(concept);
-			for (int otherTermIdx = 0; otherTermIdx < this.values[currTermIdx].length - 1; otherTermIdx++) {
-				if (values[currTermIdx][otherTermIdx] < min)
-					min = values[currTermIdx][otherTermIdx];
-				if (values[currTermIdx][otherTermIdx] > max)
-					max = values[currTermIdx][otherTermIdx];
-			}
+		if (minOpt.isEmpty() || maxOpt.isEmpty()) {
+			return;
 		}
+
+		final double min = minOpt.getAsDouble();
+		final double max = maxOpt.getAsDouble();
+		final double range = max - min;
 
 		/* normalize using linear scaling */
-		for (TermType concept : concepts) {
-			currTermIdx = terms.indexOf(concept);
-
-			for (int otherTermIdx = 0; otherTermIdx < this.values[currTermIdx].length - 1; otherTermIdx++) {
-				values[currTermIdx][otherTermIdx] = (values[currTermIdx][otherTermIdx] - min) / (max - min);
-			}
-		}
+		values.replaceAll(value -> (value - min) / range);
 	}
 	
 	/**
