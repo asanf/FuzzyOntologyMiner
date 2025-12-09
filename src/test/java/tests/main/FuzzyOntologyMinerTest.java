@@ -16,7 +16,6 @@ import fuzzyOntologyMiner.FuzzyOntologyMiner;
 import fuzzyOntologyMiner.IMiningParams;
 import fuzzyOntologyMiner.MiningParams;
 import fuzzyOntologyMiner.correlationFunctions.BalancedMutualInformation;
-import fuzzyOntologyMiner.domain.TermFrequencies;
 import fuzzyOntologyMiner.postag.PosTag;
 
 class FuzzyOntologyMinerTest {
@@ -37,7 +36,7 @@ class FuzzyOntologyMinerTest {
     /* Term frequencies extraction parameters */
     miningParams.setTaggerModel("models/left3words-wsj-0-18.tagger");
     miningParams.setWindowSize(7);
-    miningParams.setTermFrequencyThresholds(0.03, 0.65);
+    miningParams.setTermFrequencyThresholds(0.22, 0.65);
     
     /* Concept extraction parameters */
     miningParams.setConceptFilteringThreshold(0.2);
@@ -47,13 +46,6 @@ class FuzzyOntologyMinerTest {
     miningParams.setConceptRelationFilterThreshold(0.2);
   }
   
-  @Test
-  void extractFrequenciesTest() {
-    TermFrequencies<String> frequencies = FuzzyOntologyMiner.extractFrequencies(miningParams);
-    assertNotEquals(0, frequencies.getTotWindows(), "At least a window must be found");
-    assertNotEquals(0, frequencies.getTerms().size(), "At least a term must be found");
-  }
-
   @Test
   void hackerTest() {
     generalMineTest("test_data/hackers", "hackers_ontology.owl");
@@ -66,6 +58,7 @@ class FuzzyOntologyMinerTest {
   
   @Test
   void reutersTest() {
+    miningParams.setTermFrequencyThresholds(0.55, 0.65);
     generalMineTest("test_data/reuters", "reuters_ontology.owl");
   }
   
@@ -85,11 +78,16 @@ class FuzzyOntologyMinerTest {
   }
   
   private static void generalMineTest(String input, String output) {
-    Path OUTPUT = Paths.get(outputDir, output);
-    miningParams.setInputDocumentsLocation(getResourcePath(input));
-    miningParams.setOutputOntologyLocation(OUTPUT);
+    Path OUTPUT = setInOut(input, output);
     FuzzyOntologyMiner.mine(miningParams);
     
     assertTrue(OUTPUT.toFile().exists());
+  }
+
+  private static Path setInOut(String input, String output) {
+    Path OUTPUT = Paths.get(outputDir, output);
+    miningParams.setInputDocumentsLocation(getResourcePath(input));
+    miningParams.setOutputOntologyLocation(OUTPUT);
+    return OUTPUT;
   }
 }

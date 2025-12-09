@@ -3,7 +3,7 @@ package fuzzyOntologyMiner.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.OptionalDouble;
+import java.util.Set;
 
 import fuzzyOntologyMiner.dataStructures.TriangularMatrix;
 
@@ -16,7 +16,7 @@ import fuzzyOntologyMiner.dataStructures.TriangularMatrix;
  * 
  * @param <TermType> Type of the data to hold
  */
-public class ContextVectors<TermType> extends TriangularMatrix<TermType> implements Iterable<TermType> {
+public class ContextVectors<TermType> implements Iterable<TermType> {
 
 	/**
 	 * Constructor
@@ -24,14 +24,14 @@ public class ContextVectors<TermType> extends TriangularMatrix<TermType> impleme
 	 * @param terms list of terms over which concepts must be built
 	 */
 	public ContextVectors(List<TermType> terms) {
-		super(terms);
+		data = new TriangularMatrix<>(terms.size());
 
-		for (TermType term : this.terms) {
+		for (TermType term : data.getItems()) {
 			/*
 			 * The value on the diagonal of the triangular matrix is used as boolean to mark
 			 * the term as concept. 1 - the term is a concept 0 - the term is not a concept
 			 */
-			setValue(term, 1);
+			data.setValue(term, 1);
 		}
 	}
 
@@ -43,7 +43,7 @@ public class ContextVectors<TermType> extends TriangularMatrix<TermType> impleme
 	 * @param membership the degree of membership of term to concept
 	 */
 	public void setMembership(TermType term, TermType concept, double membership) {
-		setValue(term, concept, membership);
+		data.setValue(term, concept, membership);
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class ContextVectors<TermType> extends TriangularMatrix<TermType> impleme
 	 * @return the membership of term to concept
 	 */
 	public double getMembership(TermType term, TermType concept) {
-		return getValue(term, concept);
+		return data.getValue(term, concept);
 	}
 
 	/**
@@ -64,9 +64,10 @@ public class ContextVectors<TermType> extends TriangularMatrix<TermType> impleme
 	 * @return a list of concepts
 	 */
 	public List<TermType> getConcepts() {
-		ArrayList<TermType> concepts = new ArrayList<TermType>();
-		for (TermType concept : terms)
-			if (getValue(concept) >= 0)
+		List<TermType> concepts = new ArrayList<TermType>();
+		
+		for (TermType concept : data.getItems())
+			if (data.getValue(concept) >= 0)
 				concepts.add(concept);
 		return concepts;
 	}
@@ -74,8 +75,8 @@ public class ContextVectors<TermType> extends TriangularMatrix<TermType> impleme
 	/**
 	 * @return a list of all the managed terms
 	 */
-	public List<TermType> getTerms() {
-		return terms;
+	public Set<TermType> getTerms() {
+		return data.getItems();
 	}
 
 	/**
@@ -87,86 +88,86 @@ public class ContextVectors<TermType> extends TriangularMatrix<TermType> impleme
 
 	/**
 	 * Finalizes the Context vectors calculation by
-	 *  - normalizing memberships in the [0, 1] range
-	 *  - deleting concepts which have no describing term with a membership value
-	 *    greater than alpha
-	 * @param alpha threshold value in range [0, 1] to determine meaningful concepts. 
-	 *              A concept is meaningful if it has at least a describing term with membership value >= alpha
+	 * - normalizing memberships in the [0, 1] range
+	 * - deleting concepts which have no describing term with a membership value
+	 * greater than alpha
+	 * 
+	 * @param alpha threshold value in range [0, 1] to determine meaningful
+	 *              concepts.
+	 *              A concept is meaningful if it has at least a describing term
+	 *              with membership value >= alpha
 	 * @throws IllegalArgumentException if alpha is outside the range [0, 1]
 	 */
 	public void finalize(double alpha) throws IllegalArgumentException {
-	  normalizeMemberships();
-	  conceptPruning(alpha);
+		normalizeMemberships();
+		conceptPruning(alpha);
 	}
 
 	/**
 	 * Normalizes the membership degrees in the [0, 1] interval.
 	 */
 	private void normalizeMemberships() {
-		OptionalDouble minOpt = values.stream().mapToDouble(Double::doubleValue).min();
-		OptionalDouble maxOpt = values.stream().mapToDouble(Double::doubleValue).max();
-
-		if (minOpt.isEmpty() || maxOpt.isEmpty()) {
-			return;
-		}
-
-		final double min = minOpt.getAsDouble();
-		final double max = maxOpt.getAsDouble();
-		final double range = max - min;
-
-		/* normalize using linear scaling */
-		values.replaceAll(value -> (value - min) / range);
+		data.applyLinearScaling();
 	}
-	
+
 	/**
-	 * Cleans the list of concept by deleting those with no describing term whose relationship value
+	 * Cleans the list of concept by deleting those with no describing term whose
+	 * relationship value
 	 * is greater than a threshold.
+	 * 
 	 * @param alpha parameter in range [0, 1] to use to prune concepts.
 	 * @throws IllegalArgumentException if alpha is outside the range [0, 1]
 	 */
 	private void conceptPruning(double alpha) throws IllegalArgumentException {
-	  if (alpha < 0 || alpha > 1) throw new IllegalArgumentException("alpha not in [0, 1]");
-	  
-	  boolean significant;
-	  int termIdx;
-	  
-	  for (TermType concept: terms) {
-	    significant = false;
-	    termIdx = 0;
-	    
-	    /*
-       * Check if the concept has at least a term describing it with a membership of
-       * at least alpha
-       */
-	    while (!significant && termIdx < terms.size()) {
-	      significant = getMembership(concept, terms.get(termIdx)) >= alpha;
-	      termIdx++;
-	    }
-	    
-	    /* If there is no such term, the concept is not relevant */
-	    if (!significant) {
-	      deleteConcept(concept);
-	    }
-	  }
+		if (alpha < 0 || alpha > 1)
+			throw new IllegalArgumentException("alpha not in [0, 1]");
+
+		boolean significant;
+		Set<TermType> terms = data.getItems();
+
+		for (TermType concept : terms) {
+			for (TermType term: terms) {
+				significant = false;
+
+				/*
+				* Check if the concept has at least a term describing it with a membership of
+				* at least alpha
+				*/
+				while (!significant) {
+					if (!term.equals(concept)) {
+						significant = getMembership(term, concept) >= alpha;
+					}
+				}
+
+				/* If there is no such term, the concept is not relevant */
+				if (!significant) {
+					deleteConcept(concept);
+				}
+			}
+		}
 	}
-	
-	 /**
-   * Deletes a concept.
-   * 
-   * @param concept the concept to delete.
-   */
-  private void deleteConcept(TermType concept) {
-    setValue(concept, -1);
-  }
+
+	/**
+	 * Deletes a concept.
+	 * 
+	 * @param concept the concept to delete.
+	 */
+	private void deleteConcept(TermType concept) {
+		data.setValue(concept, -1);
+	}
 
 	public String toString() {
+		Set<TermType> terms = data.getItems();
 		String toRet = "";
 		for (TermType t1 : terms) {
 			toRet += (t1 + ": ");
 			for (TermType t2 : terms)
-				toRet += (getValue(t1, t2) + "\t");
+				toRet += (data.getValue(t1, t2) + "\t");
 			toRet += "\n";
 		}
 		return toRet;
 	}
+
+	/** Triangular Matrix holding the data */
+	private TriangularMatrix<TermType> data;
 }

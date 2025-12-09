@@ -3,6 +3,7 @@ package fuzzyOntologyMiner.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import fuzzyOntologyMiner.dataStructures.TriangularMatrix;
 
@@ -17,13 +18,15 @@ import fuzzyOntologyMiner.dataStructures.TriangularMatrix;
  *
  * @param <TermType> Type of the terms
  */
-public class TermFrequencies<TermType> extends TriangularMatrix<TermType> implements Iterable<TermType> {
+public class TermFrequencies<TermType> implements Iterable<TermType> {
 
 	/**
 	 * Constructor.
 	 */
 	public TermFrequencies() {
-		super();
+		this.totWindows = 0;
+		this.frequenciesAlreadyCalculated = false;
+		this.data = new TriangularMatrix<>();
 	}
 
 	/**
@@ -32,8 +35,9 @@ public class TermFrequencies<TermType> extends TriangularMatrix<TermType> implem
 	 * @param size initial size.
 	 */
 	public TermFrequencies(int size) {
-		super(size);
-		frequenciesAlreadyCalculated = false;
+		this.totWindows = 0;
+		this.frequenciesAlreadyCalculated = false;
+		this.data = new TriangularMatrix<>(size);
 	}
 
 	/**
@@ -47,7 +51,7 @@ public class TermFrequencies<TermType> extends TriangularMatrix<TermType> implem
 		if (frequenciesAlreadyCalculated)
 			return false;
 
-		add(term, 1);
+		data.add(term, 1);
 
 		return true;
 	}
@@ -64,7 +68,7 @@ public class TermFrequencies<TermType> extends TriangularMatrix<TermType> implem
 		if (frequenciesAlreadyCalculated)
 			return false;
 
-		add(firstTerm, secondTerm, 1);
+		data.add(firstTerm, secondTerm, 1);
 		return true;
 	}
 
@@ -78,7 +82,7 @@ public class TermFrequencies<TermType> extends TriangularMatrix<TermType> implem
 		if (frequenciesAlreadyCalculated)
 			return false;
 
-		normalizeBy(totWindows);
+		data.normalizeBy(totWindows);
 		frequenciesAlreadyCalculated = true;
 		return true;
 	}
@@ -107,7 +111,7 @@ public class TermFrequencies<TermType> extends TriangularMatrix<TermType> implem
 		if (!frequenciesAlreadyCalculated)
 			return -2;
 
-		return getValue(term);
+		return data.getValue(term);
 	}
 
 	/**
@@ -122,7 +126,7 @@ public class TermFrequencies<TermType> extends TriangularMatrix<TermType> implem
 
 		if (!frequenciesAlreadyCalculated)
 			return -2;
-		return getValue(firstTerm, secondTerm);
+		return data.getValue(firstTerm, secondTerm);
 	}
 
 	/**
@@ -142,19 +146,14 @@ public class TermFrequencies<TermType> extends TriangularMatrix<TermType> implem
 	 * @return false if the frequencies have not been calculated yet
 	 */
 	public boolean filterTerms(double lower, double upper) {
-		double f;
-		int termIdx;
-
 		if (!frequenciesAlreadyCalculated)
 			return false;
 
-		for (TermType term : terms) {
-			f = getFrequency(term);
-			if ((f < lower || f > upper)) {
-				termIdx = terms.indexOf(term);
-				terms.set(termIdx, null);
-			}
-		}
+		data.delete(data.getItems().stream()
+								   .filter(term -> {
+										double freq = getFrequency(term);
+										return (freq < lower || freq > upper);
+									}).collect(Collectors.toList()));
 
 		return true;
 	}
@@ -173,7 +172,7 @@ public class TermFrequencies<TermType> extends TriangularMatrix<TermType> implem
 	public List<TermType> getTerms() {
 		List<TermType> notNull = new ArrayList<TermType>();
 
-		for (TermType term : terms) {
+		for (TermType term : data.getItems()) {
 			if (term != null)
 				notNull.add(term);
 		}
@@ -187,4 +186,6 @@ public class TermFrequencies<TermType> extends TriangularMatrix<TermType> implem
 	/** Flag indicating the frequencies have already been calculated */
 	private boolean frequenciesAlreadyCalculated;
 
+	/** Triangular matrix holding the data */
+	private TriangularMatrix<TermType> data;
 }
