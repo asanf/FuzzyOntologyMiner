@@ -1,5 +1,6 @@
 package fuzzyOntologyMiner.frequencies;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,6 +10,10 @@ import fuzzyOntologyMiner.postag.PosTag;
 import fuzzyOntologyMiner.postag.PosTagPattern;
 
 public class NaiveTermsExtractor implements ITermsExtractor {
+
+  public NaiveTermsExtractor() {
+    this.patterns = new ArrayList<>();
+  }
 
   @Override
   public void compile(List<PosTagPattern> patterns) {
@@ -43,15 +48,16 @@ public class NaiveTermsExtractor implements ITermsExtractor {
     String term = "";
     
     /* Not enough terms to match the pattern */
-    if (pattern.size() >= taggedWords.size() - startIdx + 1) return term;
+    if (pattern.size() > taggedWords.size() - startIdx) return term;
     
     int currIdx = startIdx;
     
     for (PosTag tag: pattern) {
       TaggedWord currWord = taggedWords.get(currIdx); 
-      if (tag.equals(currWord.tag())) {
-        term += currWord.word() + " ";
+      if (!tag.equals(currWord.tag())) {
+        return "";
       }
+      term += currWord.word() + " ";
       
       currIdx++;
     }
