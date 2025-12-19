@@ -2,15 +2,17 @@ package tests.main;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.FileNotFoundException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import fuzzyOntologyMiner.FuzzyOntologyMiner;
 import fuzzyOntologyMiner.IMiningParams;
@@ -19,17 +21,19 @@ import fuzzyOntologyMiner.correlationFunctions.BalancedMutualInformation;
 import fuzzyOntologyMiner.postag.PosTag;
 
 class FuzzyOntologyMinerTest {
-  private static String outputDir;
   private static IMiningParams miningParams;
   
+  public static Stream<Arguments> data() {
+    return Stream.of(
+        Arguments.of("test_data/hackers", "hackers_ontology.owl"),
+        Arguments.of("test_data/cyber", "crypto_ontology.owl"),
+        Arguments.of("test_data/reuters", "reuters_ontology.owl")
+    );
+  }
+
   @BeforeAll
-  static void setup() throws FileNotFoundException {
-    outputDir = System.getProperty("testOutputDir");
-    if (outputDir == null) 
-      throw new IllegalStateException("System property 'testOutputDir' not set by Gradle");
-    
+  public static void setup() {
     miningParams = new MiningParams();
-    
     /* Search patterns */
     miningParams.addMiningPattern(PosTag.NOUN);
     
@@ -46,21 +50,17 @@ class FuzzyOntologyMinerTest {
     miningParams.setConceptRelationFilterThreshold(0.2);
   }
   
-  @Test
-  void hackerTest() {
-    generalMineTest("test_data/hackers", "hackers_ontology.owl");
+  @ParameterizedTest
+  @MethodSource("data")
+  public void testMiner(String inFile, String outFile) {
+    Path output = Paths.get(outFile);
+    miningParams.setInputDocumentsLocation(getResourcePath(inFile));
+    miningParams.setOutputOntologyLocation(output);
+    FuzzyOntologyMiner.mine(miningParams);
+    
+    assertTrue(output.toFile().exists());
   }
   
-  @Test
-  void cyberSecurityTest() {
-    generalMineTest("test_data/cyber", "crypto_ontology.owl");
-  }
-  
-  @Test
-  void reutersTest() {
-    miningParams.setTermFrequencyThresholds(0.55, 0.65);
-    generalMineTest("test_data/reuters", "reuters_ontology.owl");
-  }
   
   private static Path getResourcePath(String resource) {
     URL resourceURL = FuzzyOntologyMinerTest.class.getClassLoader().getResource(resource);
@@ -75,19 +75,5 @@ class FuzzyOntologyMinerTest {
     }
     
     return Paths.get(resourceURI);
-  }
-  
-  private static void generalMineTest(String input, String output) {
-    Path OUTPUT = setInOut(input, output);
-    FuzzyOntologyMiner.mine(miningParams);
-    
-    assertTrue(OUTPUT.toFile().exists());
-  }
-
-  private static Path setInOut(String input, String output) {
-    Path OUTPUT = Paths.get(outputDir, output);
-    miningParams.setInputDocumentsLocation(getResourcePath(input));
-    miningParams.setOutputOntologyLocation(OUTPUT);
-    return OUTPUT;
   }
 }
