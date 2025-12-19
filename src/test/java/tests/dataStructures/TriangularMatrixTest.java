@@ -2,6 +2,7 @@ package tests.dataStructures;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.DoubleStream;
 
@@ -24,6 +25,9 @@ public class TriangularMatrixTest {
     double expected = 1;
     matrix.add(term, expected);
     assertEquals(expected, matrix.getValue(term));
+
+    matrix.add(term, 9);
+    assertEquals(10, matrix.getValue(term));
   }
 
   @Test
@@ -35,6 +39,9 @@ public class TriangularMatrixTest {
 
     matrix.add(first, second, expected);
     assertEquals(expected, matrix.getValue(first, second));
+
+    matrix.add(first, second, expected);
+    assertEquals(2*expected, matrix.getValue(first, second));
   }
 
   @Test
@@ -54,6 +61,18 @@ public class TriangularMatrixTest {
     double expected = 0;
 
     assertEquals(expected, matrix.getValue(first, second));
+  }
+
+  @Test
+  void size() {
+    TriangularMatrix<String> matrix = new TriangularMatrix<>();
+
+    List<String> terms = Arrays.asList("first", "second", "third");
+    for (String term: terms) {
+      matrix.add(term, 1);
+    }
+
+    assertEquals(terms.size(), matrix.getItems().size());
   }
 
   @Test
