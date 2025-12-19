@@ -1,4 +1,4 @@
-package fuzzyOntologyMiner.domain;
+package fuzzyOntologyMiner.frequencies;
 
 import java.util.ArrayList;
 import java.util.Iterator;

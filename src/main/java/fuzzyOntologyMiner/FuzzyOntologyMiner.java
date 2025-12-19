@@ -6,11 +6,11 @@ import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 import fuzzyOntologyMiner.correlationFunctions.ICorrelationFunction;
 import fuzzyOntologyMiner.domain.ContextVectors;
-import fuzzyOntologyMiner.domain.StopWords;
 import fuzzyOntologyMiner.domain.Taxonomy;
-import fuzzyOntologyMiner.domain.TermFrequencies;
 import fuzzyOntologyMiner.frequencies.ITermsExtractor;
 import fuzzyOntologyMiner.frequencies.NaiveTermsExtractor;
+import fuzzyOntologyMiner.frequencies.StopWords;
+import fuzzyOntologyMiner.frequencies.TermFrequencies;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
