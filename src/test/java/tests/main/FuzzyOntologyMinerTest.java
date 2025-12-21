@@ -42,14 +42,14 @@ class FuzzyOntologyMinerTest {
     /* Term frequencies extraction parameters */
     miningParams.setTaggerModel("models/left3words-wsj-0-18.tagger");
     miningParams.setWindowSize(7);
-    miningParams.setTermFrequencyThresholds(0.22, 0.65);
+    miningParams.setTermFrequencyThresholds(0.03, 0.55);
     
     /* Concept extraction parameters */
-    miningParams.setConceptFilteringThreshold(0.2);
+    miningParams.setConceptFilteringThreshold(0.02);
     miningParams.setCorrelationFunction(new BalancedMutualInformation(0.55));
     
     /* Taxonomy parameters */
-    miningParams.setConceptRelationFilterThreshold(0.2);
+    miningParams.setConceptRelationFilterThreshold(0.02);
   }
   
   @ParameterizedTest

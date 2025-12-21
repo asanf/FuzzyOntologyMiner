@@ -149,6 +149,7 @@ public class TermFrequencies<TermType> implements Iterable<TermType> {
 		if (!frequenciesAlreadyCalculated)
 			return false;
 
+		
 		data.delete(data.getItems().stream()
 								   .filter(term -> {
 										double freq = getFrequency(term);
