@@ -48,8 +48,8 @@ public class TriangularMatrix<T> {
 	/**
 	 * @return a {@link Set<T>} the item saved in this matrix
 	 */
-	public Set<T> getItems() {
-		return this.items.keySet();
+	public List<T> getItems() {
+		return List.copyOf(this.items.keySet());
 	}
 
 	/**
@@ -147,16 +147,19 @@ public class TriangularMatrix<T> {
 		}
 	}
 
-	public void applyLinearScaling()	{
-		OptionalDouble minOpt = DoubleStream.of(values).parallel().min();
+	public double max() {
 		OptionalDouble maxOpt = DoubleStream.of(values).parallel().max();
+		return maxOpt.isEmpty() ? 0.0 : maxOpt.getAsDouble();
+	}
 
-		if (minOpt.isEmpty() || maxOpt.isEmpty()) {
-			return;
-		}
+	public double min() {
+		OptionalDouble minOpt = DoubleStream.of(values).parallel().min();
+		return minOpt.isEmpty() ? 0.0 : minOpt.getAsDouble();
+	}
 
-		final double min = minOpt.getAsDouble();
-		final double max = maxOpt.getAsDouble();
+	public void applyLinearScaling()	{
+		final double min = min();
+		final double max = max();
 		final double range = max - min;
 
 		/* normalize using linear scaling */

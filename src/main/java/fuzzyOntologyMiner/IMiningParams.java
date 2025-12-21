@@ -90,8 +90,6 @@ public interface IMiningParams {
 	 */
 	double getMaxAllowedTermFrequency();
 	
-	// TODO Patterns to observe
-	
 	/**
 	 * Sets the {@link ICorrelationFunction} to be used in computing the 
 	 * {@link ContextVectors}.

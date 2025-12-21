@@ -3,7 +3,7 @@ package fuzzyOntologyMiner.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import fuzzyOntologyMiner.dataStructures.TriangularMatrix;
 
@@ -64,18 +64,15 @@ public class ContextVectors<TermType> implements Iterable<TermType> {
 	 * @return a list of concepts
 	 */
 	public List<TermType> getConcepts() {
-		List<TermType> concepts = new ArrayList<TermType>();
-		
-		for (TermType concept : data.getItems())
-			if (data.getValue(concept) >= 0)
-				concepts.add(concept);
-		return concepts;
+		return data.getItems().stream()
+					 .filter(i -> {return data.getValue(i) >= 0;})
+					 .collect(Collectors.toList());
 	}
 
 	/**
 	 * @return a list of all the managed terms
 	 */
-	public Set<TermType> getTerms() {
+	public List<TermType> getTerms() {
 		return data.getItems();
 	}
 
@@ -123,26 +120,19 @@ public class ContextVectors<TermType> implements Iterable<TermType> {
 			throw new IllegalArgumentException("alpha not in [0, 1]");
 
 		boolean significant;
-		Set<TermType> terms = data.getItems();
+		List<TermType> terms = data.getItems();
 
 		for (TermType concept : terms) {
-			for (TermType term: terms) {
-				significant = false;
+			significant = terms.stream()
+										.filter(term -> !term.equals(concept))
+										.anyMatch(term -> {
+											return (getMembership(term, concept) >= alpha);
+										}
+			);
 
-				/*
-				* Check if the concept has at least a term describing it with a membership of
-				* at least alpha
-				*/
-				while (!significant) {
-					if (!term.equals(concept)) {
-						significant = getMembership(term, concept) >= alpha;
-					}
-				}
 
-				/* If there is no such term, the concept is not relevant */
-				if (!significant) {
-					deleteConcept(concept);
-				}
+			if (!significant) {
+				deleteConcept(concept);
 			}
 		}
 	}
@@ -157,7 +147,7 @@ public class ContextVectors<TermType> implements Iterable<TermType> {
 	}
 
 	public String toString() {
-		Set<TermType> terms = data.getItems();
+		List<TermType> terms = data.getItems();
 		String toRet = "";
 		for (TermType t1 : terms) {
 			toRet += (t1 + ": ");
