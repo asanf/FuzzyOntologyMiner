@@ -1,5 +1,9 @@
 package fuzzyOntologyMiner.database;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +25,14 @@ public class DbManager implements AutoCloseable {
     private static final String SQL_SELECT_CO_OCC = "SELECT count FROM co_occurrences WHERE term_a = ? AND term_b = ?";
     private static final String SQL_SELECT_ALL_TERMS = "SELECT term FROM terms";
 
+    private static final String SQL_DELETE_OUT_OF_RANGE = 
+    "DELETE FROM terms WHERE (CAST(count AS DOUBLE) / (SELECT total_obs FROM metadata WHERE id = 1)) < ? " +
+    "OR (CAST(count AS DOUBLE) / (SELECT total_obs FROM metadata WHERE id = 1)) > ?";
+
+    private static final String SQL_CLEAN_CO_OCC = 
+    "DELETE FROM co_occurrences WHERE term_a NOT IN (SELECT term FROM terms) " +
+    "OR term_b NOT IN (SELECT term FROM terms)";
+
     private final Connection conn;
     private final PreparedStatement psUpsertTerm;
     private final PreparedStatement psUpsertCoOcc;
@@ -33,6 +45,15 @@ public class DbManager implements AutoCloseable {
             Class.forName("org.duckdb.DuckDBDriver");
         } catch (ClassNotFoundException e) {
             throw new SQLException("DuckDB JDBC driver not found", e);
+        }
+        Path path = Paths.get(dbPath);
+        if (Files.exists(path)) {
+            try {
+                Files.delete(path);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         this.conn = DriverManager.getConnection("jdbc:duckdb:" + dbPath);
         this.conn.setAutoCommit(false);
@@ -137,6 +158,32 @@ public class DbManager implements AutoCloseable {
             }
         }
         return terms;
+    }
+
+    public void filter(double lower, double upper) throws SQLException {
+        if (getTotalObservations() == 0) return;
+
+    try {
+        // 1. Identifica e rimuovi i termini fuori range dalla tabella 'terms'
+        try (PreparedStatement pst = conn.prepareStatement(SQL_DELETE_OUT_OF_RANGE)) {
+            pst.setDouble(1, lower);
+            pst.setDouble(2, upper);
+            pst.executeUpdate();
+        }
+
+        // 2. Rimuovi manualmente le co-occorrenze orfane 
+        // (quelle dove term_a o term_b non esistono più in 'terms')
+        try (Statement st = conn.createStatement()) {
+            st.execute(SQL_CLEAN_CO_OCC);
+        }
+
+        // 3. Conferma le modifiche
+        conn.commit();
+        
+    } catch (SQLException e) {
+        conn.rollback();
+        throw e;
+    }
     }
 
     private long getTotalObservations() throws SQLException {
