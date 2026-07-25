@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>asanf</groupId>
+  <artifactId>ontologizer</artifactId>
+  <version>1.8-SNAPSHOT</version>
+  <inceptionYear>2016</inceptionYear>
+  <licenses>
+    <license>
+      <name>GNU GENERAL PUBLIC LICENSE (AGPL)</name>
+      <url>https://www.gnu.org/licenses/gpl.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>com.goldmansachs</groupId>
+      <artifactId>gs-collections</artifactId>
+      <version>7.0.3</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/net.sourceforge.owlapi/owlapi-distribution -->
+    <dependency>
+      <groupId>net.sourceforge.owlapi</groupId>
+      <artifactId>owlapi-distribution</artifactId>
+      <version>5.0.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/edu.stanford.nlp/stanford-corenlp -->
+    <dependency>
+      <groupId>edu.stanford.nlp</groupId>
+      <artifactId>stanford-corenlp</artifactId>
+      <version>3.6.0</version>
+    </dependency>
+
+  </dependencies>
+
+
+</project>
