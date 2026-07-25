@@ -7,3 +7,6 @@
 /.settings
 /.project
 /.vscode
+/.metadata
+/mining.db
+/mining.db.wal
